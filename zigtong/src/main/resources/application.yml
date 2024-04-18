@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/zigtong
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  profiles:
+    include: oauth, connection
+
+    active: dev
+
+    group:
+      prod:
+        - connection-prod
+        - oauth-prod
+      dev:
+        - connection-dev
+        - oauth-dev
+logging:
+  level:
+    root: debug

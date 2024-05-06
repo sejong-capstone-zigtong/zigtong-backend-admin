@@ -1,9 +1,10 @@
 package capstone.zigtong.adminserver.domain.admin;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import capstone.zigtong.adminserver.domain.post.Post;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Admin {
@@ -19,6 +20,7 @@ public class Admin {
     private String category;
     @Column(nullable = false)
     private Role role;
-
+    @OneToMany(mappedBy = "admin")
+    private List<Post> postList=new ArrayList<>();
 
 }

@@ -27,5 +27,15 @@ public class PostService {
         postRepository.save(post);
         return PostDto.fromEntity(post);
     }
-
+@Transactional
+    public PostDto updatePost(String adminId, String accountId, String postId, PostDto postDto) {
+    Admin admin = adminRepository.findById(adminId).orElseThrow(
+            () -> new CustomException(ErrorCode.ACCOUNT_NOT_FOUND)
+    );
+    Post post = postRepository.findById(postId).orElseThrow(
+            () -> new CustomException(ErrorCode.POST_NOT_FOUND)
+    );
+    post.updateByDto(postDto);
+    return PostDto.fromEntity(post);
+    }
 }

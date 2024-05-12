@@ -73,4 +73,22 @@ public class Post {
         this.numberOfRecruits = postDto.getNumberOfRecruits();
         this.postStatus = postDto.getPostStatus();
     }
+
+    public void updateByDto(PostDto postDto) {
+        this.content = postDto.getContent();
+        this.wage = postDto.getWage();
+        this.address = postDto.getAddress();
+        this.startTime = postDto.getStartTime();
+        this.endTime = postDto.getEndTime();
+        this.category = postDto.getCategory();
+        this.numberOfApplicants = postDto.getNumberOfApplicants();
+        this.phoneNumber = postDto.getPhoneNumber();
+        this.recruitmentStatus = postDto.getRecruitmentStatus();
+        this.wageType = postDto.getWageType();
+        this.recruitmentStartTime = postDto.getRecruitmentStartTime();
+        this.recruitmentEndTime = postDto.getRecruitmentEndTime();
+        this.lunchTime = postDto.getLunchTime();
+        this.numberOfRecruits = postDto.getNumberOfRecruits();
+        this.postStatus = postDto.getPostStatus();
+    }
 }

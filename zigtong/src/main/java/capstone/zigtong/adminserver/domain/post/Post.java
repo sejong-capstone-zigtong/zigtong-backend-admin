@@ -1,13 +1,18 @@
 package capstone.zigtong.adminserver.domain.post;
 
 import capstone.zigtong.adminserver.domain.admin.Admin;
+import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
+@Getter
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -49,10 +54,23 @@ public class Post {
     private Admin admin;
 
 
-
-
-
-
-
-
+    public Post(Admin admin, PostDto postDto) {
+        this.admin = admin;
+        admin.addPostList(this);
+        this.content = postDto.getContent();
+        this.wage = postDto.getWage();
+        this.address = postDto.getAddress();
+        this.startTime = postDto.getStartTime();
+        this.endTime = postDto.getEndTime();
+        this.category = postDto.getCategory();
+        this.numberOfApplicants = postDto.getNumberOfApplicants();
+        this.phoneNumber = postDto.getPhoneNumber();
+        this.recruitmentStatus = postDto.getRecruitmentStatus();
+        this.wageType = postDto.getWageType();
+        this.recruitmentStartTime = postDto.getRecruitmentStartTime();
+        this.recruitmentEndTime = postDto.getRecruitmentEndTime();
+        this.lunchTime = postDto.getLunchTime();
+        this.numberOfRecruits = postDto.getNumberOfRecruits();
+        this.postStatus = postDto.getPostStatus();
+    }
 }

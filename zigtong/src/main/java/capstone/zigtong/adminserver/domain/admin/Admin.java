@@ -39,4 +39,8 @@ public class Admin {
         this.category = category;
         this.role = role;
     }
+
+    public void addPostList(Post post) {
+        postList.add(post);
+    }
 }

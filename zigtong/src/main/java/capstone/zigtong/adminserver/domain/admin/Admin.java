@@ -2,12 +2,14 @@ package capstone.zigtong.adminserver.domain.admin;
 
 import capstone.zigtong.adminserver.domain.post.Post;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Admin {
     @Id

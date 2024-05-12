@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class PostController {
@@ -25,8 +27,8 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully created"));
     }
-    @PutMapping("admins/{adminId}/posts/{postId}")
-    public ResponseEntity<CommonResponse> updateOrder(
+    @PutMapping("/api/admins/{adminId}/posts/{postId}")
+    public ResponseEntity<CommonResponse> updatePost(
             @PathVariable String adminId,
             @PathVariable String postId,
             @RequestBody @Valid PostUpdateDto postUpdateDto
@@ -38,6 +40,18 @@ public class PostController {
                 postService.updatePost(adminId, accountId, postId, postUpdateDto.toDto());
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully updated"));
+    }
+    @GetMapping("/api/admins{adminId}/posts")
+    public ResponseEntity<List<PostDto>> getAllPosts(@PathVariable String adminId){
+        List<PostDto> postDtoList = postService.getAllPosts(adminId);
+        return ResponseEntity.ok()
+                .body(postDtoList);
+    }
+    @GetMapping("/api/admins{adminId}/posts/{postId}")
+    public ResponseEntity<PostDto> getPost(@PathVariable String adminId, @PathVariable String postId){
+        PostDto postDto = postService.getPost(adminId, postId);
+        return ResponseEntity.ok()
+                .body(postDto);
     }
     private User getPrincipal() {
         return (User)

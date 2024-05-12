@@ -1,6 +1,7 @@
 package capstone.zigtong.adminserver.domain.post;
 
 import capstone.zigtong.adminserver.domain.admin.Admin;
+import capstone.zigtong.adminserver.domain.base.BaseTimeEntity;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import java.time.LocalTime;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Post {
+public class Post extends BaseTimeEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
     @Column(name = "id", columnDefinition = "char(36)")

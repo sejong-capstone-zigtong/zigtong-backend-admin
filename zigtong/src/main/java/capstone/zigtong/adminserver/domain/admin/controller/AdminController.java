@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class AdminController {
-    private AdminService adminService;
-    @PostMapping("api/admins/sign-up")
+    private final AdminService adminService;
+    @PostMapping("/api/admins/sign-up")
     public ResponseEntity<Void>adminSignUp(@RequestBody AdminSignUpDto adminSignUpDto){
         adminService.signUp(adminSignUpDto.toDto());
         return new ResponseEntity<>(HttpStatus.CREATED);

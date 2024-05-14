@@ -4,12 +4,15 @@ import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.admin.Role;
 import capstone.zigtong.adminserver.domain.post.Post;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Data
+@AllArgsConstructor
 public class AdminDto {
 
     private String id;

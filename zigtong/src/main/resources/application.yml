@@ -6,16 +6,13 @@ spring:
     driver-class-name: org.h2.Driver
   profiles:
     include: security
-
     active: dev
-
     group:
       prod:
         - connection-prod
         - oauth-prod
       dev:
-        - connection-dev
-        - oauth-dev
+        - dev
 logging:
   level:
     root: debug

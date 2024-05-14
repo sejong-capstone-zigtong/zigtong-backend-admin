@@ -1,8 +1,9 @@
 package capstone.zigtong.adminserver.domain.admin.dto;
 
 import capstone.zigtong.adminserver.domain.admin.Role;
+import lombok.Data;
 
-
+@Data
 public class AdminSignUpDto {
     private String accountId;
     private String password;

@@ -29,6 +29,7 @@ public class JwtProvider {
 
     public String resolveToken(@Nullable HttpServletRequest request, String header) {
         String authHeader = request.getHeader(header);
+        System.out.println("authHeader = " + authHeader);
         if (authHeader == null) {
             return null;
         }

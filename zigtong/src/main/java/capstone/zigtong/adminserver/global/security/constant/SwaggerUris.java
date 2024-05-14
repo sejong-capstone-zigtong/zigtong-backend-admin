@@ -18,7 +18,7 @@ public enum SwaggerUris {
 
     private final String value;
 
-    // 전체 URI를 반환
+    // 전체 URI 반환
     public static List<String> getAllUris() {
         return Arrays.stream(SwaggerUris.values())
                 .map(SwaggerUris::getUri)

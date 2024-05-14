@@ -4,6 +4,7 @@ import capstone.zigtong.adminserver.domain.post.Post;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Admin {
     @Id
-    @GeneratedValue(generator = "uuid2")
+    @UuidGenerator
     @Column(name = "id", columnDefinition = "char(36)")
     private String id;
     @Column(nullable = false)

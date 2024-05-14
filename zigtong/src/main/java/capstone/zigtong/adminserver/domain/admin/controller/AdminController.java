@@ -5,16 +5,16 @@ import capstone.zigtong.adminserver.domain.admin.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static capstone.zigtong.adminserver.global.security.constant.EndpointConstant.ENDPOINT_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(ENDPOINT_PREFIX+"/admins")
 public class AdminController {
     private final AdminService adminService;
-    @PostMapping("/api/admins/sign-up")
+    @PostMapping("/sign-up")
     public ResponseEntity<Void>adminSignUp(@RequestBody AdminSignUpDto adminSignUpDto){
         adminService.signUp(adminSignUpDto.toDto());
         return new ResponseEntity<>(HttpStatus.CREATED);

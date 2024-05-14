@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public enum PublicUris {
-    SIGN_IN("/auth/sign-in"),
-    SIGN_UP("/worker/sign-up"),
+    SIGN_IN("/admins/sign-in"),
+    SIGN_UP("/admins/sign-up"),
     SEND_CODE("/auth/send-code"),
     VERIFY("/auth/verify");
 

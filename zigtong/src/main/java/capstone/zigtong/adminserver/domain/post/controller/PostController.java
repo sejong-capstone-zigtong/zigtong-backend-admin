@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static capstone.zigtong.adminserver.global.security.constant.EndpointConstant.ENDPOINT_PREFIX;
+
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(ENDPOINT_PREFIX+"/admins")
 public class PostController {
     private final PostService postService;
-    @PostMapping("/api/admins/{adminId}/posts")
+    @PostMapping("{adminId}/posts")
     public ResponseEntity<CommonResponse> createPost(@PathVariable String adminId, @RequestBody PostCreateDto postCreateDto){
         User principal = getPrincipal();
         String accountId = principal.getUsername();
@@ -27,7 +30,7 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully created"));
     }
-    @PutMapping("/api/admins/{adminId}/posts/{postId}")
+    @PutMapping("{adminId}/posts/{postId}")
     public ResponseEntity<CommonResponse> updatePost(
             @PathVariable String adminId,
             @PathVariable String postId,
@@ -41,13 +44,13 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully updated"));
     }
-    @GetMapping("/api/admins{adminId}/posts")
+    @GetMapping("/{adminId}/posts")
     public ResponseEntity<List<PostDto>> getAllPosts(@PathVariable String adminId){
         List<PostDto> postDtoList = postService.getAllPosts(adminId);
         return ResponseEntity.ok()
                 .body(postDtoList);
     }
-    @GetMapping("/api/admins{adminId}/posts/{postId}")
+    @GetMapping("/{adminId}/posts/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable String adminId, @PathVariable String postId){
         PostDto postDto = postService.getPost(adminId, postId);
         return ResponseEntity.ok()

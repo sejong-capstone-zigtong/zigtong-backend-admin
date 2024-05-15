@@ -21,7 +21,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
 public class PostController {
     private final PostService postService;
-    @PostMapping("{adminId}/posts")
+    @PostMapping("/{adminId}/posts")
     public ResponseEntity<CommonResponse> createPost(@PathVariable String adminId, @RequestBody PostCreateDto postCreateDto){
         User principal = getPrincipal();
         String accountId = principal.getUsername();
@@ -30,7 +30,7 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully created"));
     }
-    @PutMapping("{adminId}/posts/{postId}")
+    @PutMapping("/{adminId}/posts/{postId}")
     public ResponseEntity<CommonResponse> updatePost(
             @PathVariable String adminId,
             @PathVariable String postId,

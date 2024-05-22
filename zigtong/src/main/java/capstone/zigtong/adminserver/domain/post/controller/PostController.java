@@ -23,8 +23,9 @@ public class PostController {
     private final PostService postService;
     @PostMapping("/{adminId}/posts")
     public ResponseEntity<CommonResponse> createPost(@PathVariable String adminId, @RequestBody PostCreateDto postCreateDto){
-        User principal = getPrincipal();
-        String accountId = principal.getUsername();
+       /* User principal = getPrincipal();
+        String accountId = principal.getUsername();*/
+        String accountId = "1";
         PostDto postDto = postService.createPost(adminId, accountId, postCreateDto.toDto());
 
         return ResponseEntity.ok()
@@ -36,9 +37,10 @@ public class PostController {
             @PathVariable String postId,
             @RequestBody @Valid PostUpdateDto postUpdateDto
     ){
-        org.springframework.security.core.userdetails.User principal =
+        /*org.springframework.security.core.userdetails.User principal =
                 getPrincipal();
-        String accountId = principal.getUsername();
+        String accountId = principal.getUsername();*/
+        String accountId = "1";
         PostDto postDto =
                 postService.updatePost(adminId, accountId, postId, postUpdateDto.toDto());
         return ResponseEntity.ok()
@@ -56,8 +58,8 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(postDto);
     }
-    private User getPrincipal() {
+    /*private User getPrincipal() {
         return (User)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+    }*/
 }

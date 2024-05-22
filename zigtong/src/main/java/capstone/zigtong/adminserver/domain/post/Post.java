@@ -6,6 +6,7 @@ import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class Post extends BaseTimeEntity {
     @Id
-    @GeneratedValue(generator = "uuid2")
+    @UuidGenerator
     @Column(name = "id", columnDefinition = "char(36)")
     private String id;
     @Column(nullable = false)
@@ -50,6 +51,7 @@ public class Post extends BaseTimeEntity {
     private Integer numberOfRecruits;
     @Column(nullable = false)
     private PostStatus postStatus;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="admin_id")
     private Admin admin;

@@ -5,6 +5,7 @@ import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import capstone.zigtong.adminserver.domain.post.dto.PostUpdateDto;
 import capstone.zigtong.adminserver.domain.post.service.PostService;
 import capstone.zigtong.adminserver.global.exception.CommonResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
 public class PostController {
     private final PostService postService;
+    @Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
     @PostMapping("/{adminId}/posts")
     public ResponseEntity<CommonResponse> createPost(@PathVariable String adminId, @RequestBody PostCreateDto postCreateDto){
        /* User principal = getPrincipal();
@@ -31,6 +33,7 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully created"));
     }
+    @Operation(summary = "게시글 수정", description = "구인 게시글을 수정합니다")
     @PutMapping("/{adminId}/posts/{postId}")
     public ResponseEntity<CommonResponse> updatePost(
             @PathVariable String adminId,
@@ -46,17 +49,26 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId(), "successfully updated"));
     }
+    @Operation(summary = "전체 게시글 조회", description = "전체 구인 게시글을 조회합니다")
     @GetMapping("/{adminId}/posts")
     public ResponseEntity<List<PostDto>> getAllPosts(@PathVariable String adminId){
         List<PostDto> postDtoList = postService.getAllPosts(adminId);
         return ResponseEntity.ok()
                 .body(postDtoList);
     }
+    @Operation(summary = "게시글 조회", description = "게시글id에 해당하는 구인 게시글을 조회합니다")
     @GetMapping("/{adminId}/posts/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable String adminId, @PathVariable String postId){
         PostDto postDto = postService.getPost(adminId, postId);
         return ResponseEntity.ok()
                 .body(postDto);
+    }
+    @Operation(summary = "게시글 삭제", description = "게시글id에 해당하는 구인 게시글을 삭제합니다")
+    @DeleteMapping("/{adminId}/posts/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable String adminId, @PathVariable String postId){
+        postService.deletePost(adminId, postId);
+        return ResponseEntity.ok()
+                .body("successfully deleted");
     }
     /*private User getPrincipal() {
         return (User)

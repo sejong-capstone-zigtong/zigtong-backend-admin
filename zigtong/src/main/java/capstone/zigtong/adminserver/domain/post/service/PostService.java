@@ -56,4 +56,14 @@ public class PostService {
         );
         return admin;
     }
+
+    public void deletePost(String adminId, String postId) {
+        Admin admin = adminRepository.findById(adminId).orElseThrow(
+                () -> new CustomException(ErrorCode.ACCOUNT_NOT_FOUND)
+        );
+        Post post = postRepository.findById(postId).orElseThrow(
+                ()->new CustomException(ErrorCode.POST_NOT_FOUND)
+        );
+        postRepository.delete(post);
+    }
 }

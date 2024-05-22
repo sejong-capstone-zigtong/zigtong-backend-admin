@@ -8,9 +8,9 @@ spring:
       dev:
         - connection-dev
         - security
-      #test:
-       # - connection-test
-       # - security
+        #test:
+        # - connection-test
+        # - security
 logging:
   level:
     root: debug

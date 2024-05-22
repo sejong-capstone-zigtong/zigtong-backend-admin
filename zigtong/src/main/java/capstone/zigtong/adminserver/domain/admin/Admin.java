@@ -1,16 +1,27 @@
 package capstone.zigtong.adminserver.domain.admin;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import capstone.zigtong.adminserver.domain.post.Post;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@NoArgsConstructor
 public class Admin {
     @Id
-    @GeneratedValue(generator = "uuid2")
+    @UuidGenerator
     @Column(name = "id", columnDefinition = "char(36)")
     private String id;
+    @Column(nullable = false)
+    private String accountId;
+    @Column(nullable = false)
+    private String password;
+
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -19,6 +30,20 @@ public class Admin {
     private String category;
     @Column(nullable = false)
     private Role role;
+    @OneToMany(mappedBy = "admin")
+    private List<Post> postList=new ArrayList<>();
 
+    public Admin(String accountId, String password, String name,
+                 String businessNumber, String category, Role role) {
+        this.accountId = accountId;
+        this.password = password;
+        this.name = name;
+        this.businessNumber = businessNumber;
+        this.category = category;
+        this.role = role;
+    }
 
+    public void addPostList(Post post) {
+        postList.add(post);
+    }
 }

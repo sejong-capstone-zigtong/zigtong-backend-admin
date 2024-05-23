@@ -19,7 +19,7 @@ public class AdminDto {
     private String accountId;
     private String password;
     private String name;
-
+    private String phoneNumber;
     private String businessNumber;
 
     private String category;
@@ -28,16 +28,17 @@ public class AdminDto {
 
     private List<Post> postList=new ArrayList<>();  //list<dto>로 바꿀것
 
-    public AdminDto(String accountId, String password, String name, String businessNumber, String category, Role role) {
+    public AdminDto(String accountId, String password, String name, String phoneNumber, String businessNumber, String category, Role role) {
         this.accountId = accountId;
         this.password = password;
         this.name = name;
+        this.phoneNumber = phoneNumber;
         this.businessNumber = businessNumber;
         this.category = category;
         this.role = role;
     }
 
-    public Admin toEntity() {
-        return new Admin(accountId, password, name, businessNumber, category, role);
+    public Admin toEntity(String encryptedPassword){
+        return new Admin(accountId, encryptedPassword, name, phoneNumber, businessNumber, category, role);
     }
 }

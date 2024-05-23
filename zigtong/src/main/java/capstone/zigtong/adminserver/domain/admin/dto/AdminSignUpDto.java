@@ -22,6 +22,10 @@ public class AdminSignUpDto {
     @NotBlank
     @Pattern(regexp = NICKNAME_REGEX)
     private String name;
+    @NotBlank
+    private String companyName;
+    @NotBlank
+    private String businessName;
     @NotBlank()
     @Pattern(regexp = PHONE_NUMBER_REGEX, message = INVALID_PHONE_NUMBER )
     private String phoneNumber;
@@ -33,6 +37,6 @@ public class AdminSignUpDto {
     private Role role;
 
     public AdminDto toDto() {
-        return new AdminDto(accountId, password, name, phoneNumber, businessNumber, category, role);
+        return new AdminDto(accountId, password, name,companyName, businessName, phoneNumber, businessNumber, category, role);
     }
 }

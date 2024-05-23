@@ -24,6 +24,10 @@ public class Admin {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
+    private String companyName;
+    @Column(nullable = false)
+    private String businessName;
+    @Column(nullable = false)
     private String phoneNumber;
     @Column(nullable = false)
     private String businessNumber;
@@ -34,11 +38,14 @@ public class Admin {
     @OneToMany(mappedBy = "admin")
     private List<Post> postList=new ArrayList<>();
 
-    public Admin(String accountId, String password, String name,String phoneNumber,
+    public Admin(String accountId, String password, String name, String companyName,
+                 String businessName, String phoneNumber,
                  String businessNumber, String category, Role role) {
         this.accountId = accountId;
         this.password = password;
         this.name = name;
+        this.companyName = companyName;
+        this.businessName = businessName;
         this.phoneNumber = phoneNumber;
         this.businessNumber = businessNumber;
         this.category = category;

@@ -23,8 +23,8 @@ public class AdminController {
         adminService.signUp(adminSignUpDto.toDto());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    @PostMapping("/sign-in")
+   /* @PostMapping("/sign-in")
     public ResponseEntity<SignInResponse>adminSignIn(@RequestBody AdminSignInDto){
-        
-    }
+
+    }*/
 }

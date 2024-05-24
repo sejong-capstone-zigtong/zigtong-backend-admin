@@ -2,6 +2,7 @@ package capstone.zigtong.adminserver.domain.workerApplicationStatus;
 
 import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.worker.Worker;
+import capstone.zigtong.adminserver.domain.workerApplicationStatus.dto.WorkerApplicationStatusUpdateDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,5 +30,9 @@ public class WorkerApplicationStatus {
         post.addWorkerApplicationStatus(this);
         this.worker = worker;
         worker.addWorkerApplicationStatus(this);
+    }
+
+    public void updateByDto(WorkerApplicationStatusUpdateDto requestDto) {
+        this.applicationStatus = requestDto.getApplicationStatus();
     }
 }

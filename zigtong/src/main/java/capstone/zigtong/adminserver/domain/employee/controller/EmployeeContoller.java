@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static capstone.zigtong.adminserver.global.security.constant.EndpointConstant.ENDPOINT_PREFIX;
 
-@RestController
+/*@RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
 public class EmployeeContoller {
@@ -23,4 +23,4 @@ public class EmployeeContoller {
                                                          @RequestBody EmployeeCreateDto employeeCreateDto){
         EmployeeDto employeeDto = employeeService.createEmployee(adminId, postId, employeeCreateDto.toDto());
     }
-}
+}*/

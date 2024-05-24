@@ -4,6 +4,7 @@ import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.base.BaseTimeEntity;
 import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
+import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,7 +37,7 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private String category;
     @Column(nullable = false)
-    private Integer numberOfApplicants;
+    private Integer numberOfApplicants = 0;
     @Column(nullable = false, length = 11)
     private String phoneNumber;
 
@@ -58,8 +60,9 @@ public class Post extends BaseTimeEntity {
     @JoinColumn(name="admin_id")
     private Admin admin;
     @OneToMany(mappedBy = "post")
-    private List<Employee> employeeList;
-
+    private List<Employee> employeeList = new ArrayList<>();
+    @OneToMany(mappedBy = "post")
+    private List<WorkerApplicationStatus> workerApplicationStatusList = new ArrayList<>();
 
     public Post(Admin admin, PostDto postDto) {
         this.admin = admin;
@@ -97,5 +100,10 @@ public class Post extends BaseTimeEntity {
         this.lunchTime = postDto.getLunchTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
         this.postStatus = postDto.getPostStatus();
+    }
+
+    public void addWorkerApplicationStatus(WorkerApplicationStatus workerApplicationStatus) {
+        workerApplicationStatusList.add(workerApplicationStatus);
+        numberOfApplicants++;
     }
 }

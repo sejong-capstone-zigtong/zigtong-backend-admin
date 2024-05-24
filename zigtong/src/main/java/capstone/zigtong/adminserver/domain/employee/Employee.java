@@ -20,7 +20,7 @@ public class Employee {
     private boolean startAttendanceStatus;
     @Column(nullable = false)
     private boolean endAttendanceStatus;
-    @JoinColumn(name="admin_id")
+    @JoinColumn(name="post_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 }

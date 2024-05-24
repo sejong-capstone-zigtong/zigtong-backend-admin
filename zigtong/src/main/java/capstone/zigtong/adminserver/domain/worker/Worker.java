@@ -1,5 +1,6 @@
 package capstone.zigtong.adminserver.domain.worker;
 
+import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -38,6 +41,12 @@ public class Worker {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
+    @OneToMany(mappedBy = "worker")
+    private List<WorkerApplicationStatus> workerApplicationStatusList = new ArrayList<>();
+
+    public void addWorkerApplicationStatus(WorkerApplicationStatus workerApplicationStatus) {
+        workerApplicationStatusList.add(workerApplicationStatus);
+    }
 
     /*@Builder(access = AccessLevel.PRIVATE)
     private Worker(String name, String memberAccount, String password, LocalDate birthdate, String phoneNumber,

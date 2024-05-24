@@ -23,12 +23,12 @@ public class PostCreateDto {
     private LocalDateTime endTime;
     @NotBlank
     private String category;
-    @NotBlank
-    private Integer numberOfApplicants;
+    //@NotBlank
+    //private Integer numberOfApplicants;
     @NotBlank
     private String phoneNumber;
-    @NotBlank
-    private RecruitmentStatus recruitmentStatus;
+    //@NotBlank
+    //private RecruitmentStatus recruitmentStatus;
     @NotBlank
     private WageType wageType;
     @NotBlank
@@ -39,8 +39,8 @@ public class PostCreateDto {
     private LocalTime lunchTime;
     @NotBlank
     private Integer numberOfRecruits;
-    @NotBlank
-    private PostStatus postStatus;
+    //@NotBlank
+    //private PostStatus postStatus;
 
     public PostDto toDto() {
         return new PostDto(
@@ -50,15 +50,15 @@ public class PostCreateDto {
                 startTime,
                 endTime,
                 category,
-                numberOfApplicants,
+                //numberOfApplicants,
                 phoneNumber,
-                recruitmentStatus,
+                //recruitmentStatus,
                 wageType,
                 recruitmentStartTime,
                 recruitmentEndTime,
                 lunchTime,
-                numberOfRecruits,
-                postStatus
+                numberOfRecruits
+                //postStatus
         );
     }
 }

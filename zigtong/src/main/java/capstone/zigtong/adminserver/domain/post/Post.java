@@ -42,7 +42,7 @@ public class Post extends BaseTimeEntity {
     private String phoneNumber;
 
     @Column(nullable = false)
-    private RecruitmentStatus recruitmentStatus;
+    private RecruitmentStatus recruitmentStatus = RecruitmentStatus.RECRUITING;
     @Column(nullable = false)
     private WageType wageType;
     @Column(nullable = false)
@@ -54,7 +54,7 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer numberOfRecruits;
     @Column(nullable = false)
-    private PostStatus postStatus;
+    private PostStatus postStatus = PostStatus.PROCEEDING;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="admin_id")
@@ -73,15 +73,12 @@ public class Post extends BaseTimeEntity {
         this.startTime = postDto.getStartTime();
         this.endTime = postDto.getEndTime();
         this.category = postDto.getCategory();
-        this.numberOfApplicants = postDto.getNumberOfApplicants();
         this.phoneNumber = postDto.getPhoneNumber();
-        this.recruitmentStatus = postDto.getRecruitmentStatus();
         this.wageType = postDto.getWageType();
         this.recruitmentStartTime = postDto.getRecruitmentStartTime();
         this.recruitmentEndTime = postDto.getRecruitmentEndTime();
         this.lunchTime = postDto.getLunchTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
-        this.postStatus = postDto.getPostStatus();
     }
 
     public void updateByDto(PostDto postDto) {

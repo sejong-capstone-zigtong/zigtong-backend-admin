@@ -32,7 +32,10 @@ public class PostDto {
     private Integer numberOfRecruits;
     private PostStatus postStatus;
 
-    public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime, LocalDateTime endTime, String category, Integer numberOfApplicants, String phoneNumber, RecruitmentStatus recruitmentStatus, WageType wageType, LocalDateTime recruitmentStartTime, LocalDateTime recruitmentEndTime, LocalTime lunchTime, Integer numberOfRecruits, PostStatus postStatus) {
+    public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime,
+                   LocalDateTime endTime, String category,String phoneNumber,
+                   WageType wageType, LocalDateTime recruitmentStartTime,
+                   LocalDateTime recruitmentEndTime, LocalTime lunchTime, Integer numberOfRecruits) {
 
         this.content = content;
         this.wage = wage;
@@ -40,15 +43,15 @@ public class PostDto {
         this.startTime = startTime;
         this.endTime = endTime;
         this.category = category;
-        this.numberOfApplicants = numberOfApplicants;
+        //this.numberOfApplicants = numberOfApplicants;
         this.phoneNumber = phoneNumber;
-        this.recruitmentStatus = recruitmentStatus;
+        //this.recruitmentStatus = recruitmentStatus;
         this.wageType = wageType;
         this.recruitmentStartTime = recruitmentStartTime;
         this.recruitmentEndTime = recruitmentEndTime;
         this.lunchTime = lunchTime;
         this.numberOfRecruits = numberOfRecruits;
-        this.postStatus = postStatus;
+        //this.postStatus = postStatus;
     }
 
     public static PostDto fromEntity(Post post) {

@@ -2,6 +2,7 @@ package capstone.zigtong.adminserver.domain.post;
 
 import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.base.BaseTimeEntity;
+import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -55,6 +57,8 @@ public class Post extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="admin_id")
     private Admin admin;
+    @OneToMany(mappedBy = "post")
+    private List<Employee> employeeList;
 
 
     public Post(Admin admin, PostDto postDto) {

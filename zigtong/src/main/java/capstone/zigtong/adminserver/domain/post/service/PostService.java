@@ -40,7 +40,7 @@ public class PostService {
     public List<PostDto> getAllPosts(String adminId) {
         Admin admin = getAdminById(adminId);
         return admin.getPostList().stream()
-                .sorted(Comparator.comparing(Post::getUpdatedAt).reversed())
+                .sorted(Comparator.comparing(Post::getCreatedAt).reversed())
                 .map(PostDto::fromEntity)
                 .toList();
     }

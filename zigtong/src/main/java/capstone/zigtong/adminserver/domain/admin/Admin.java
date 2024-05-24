@@ -28,6 +28,8 @@ public class Admin {
     @Column(nullable = false)
     private String businessName;
     @Column(nullable = false)
+    private String address;
+    @Column(nullable = false)
     private String phoneNumber;
     @Column(nullable = false)
     private String businessNumber;
@@ -39,13 +41,14 @@ public class Admin {
     private List<Post> postList=new ArrayList<>();
 
     public Admin(String accountId, String password, String name, String companyName,
-                 String businessName, String phoneNumber,
+                 String businessName, String address, String phoneNumber,
                  String businessNumber, String category, Role role) {
         this.accountId = accountId;
         this.password = password;
         this.name = name;
         this.companyName = companyName;
         this.businessName = businessName;
+        this.address = address;
         this.phoneNumber = phoneNumber;
         this.businessNumber = businessNumber;
         this.category = category;

@@ -1,4 +1,4 @@
-package capstone.zigtong.adminserver.global.security.config;
+package capstone.zigtong.adminserver.global.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

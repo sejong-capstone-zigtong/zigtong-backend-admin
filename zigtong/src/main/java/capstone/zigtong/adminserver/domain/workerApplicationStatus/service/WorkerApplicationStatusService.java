@@ -14,6 +14,9 @@ import capstone.zigtong.adminserver.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class WorkerApplicationStatusService {
@@ -36,6 +39,13 @@ public class WorkerApplicationStatusService {
         workerApplicationStatus.updateByDto(requestDto);
         return WorkerApplicationStatusDto.fromEntity(workerApplicationStatus);
     }
+
+    public List<WorkerApplicationStatusDto> getApplications(String postId) {
+        Post post = getPostById(postId);
+        return post.getWorkerApplicationStatusList().stream()
+                .map(WorkerApplicationStatusDto::fromEntity)
+                .toList();
+    }
     private Post getPostById(String postId){
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new CustomException(ErrorCode.POST_NOT_FOUND)
@@ -54,4 +64,6 @@ public class WorkerApplicationStatusService {
         );
         return workerApplicationStatus;
     }
+
+
 }

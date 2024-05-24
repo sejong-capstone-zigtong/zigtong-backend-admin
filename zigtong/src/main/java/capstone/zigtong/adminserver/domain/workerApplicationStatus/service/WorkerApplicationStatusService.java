@@ -1,10 +1,14 @@
 package capstone.zigtong.adminserver.domain.workerApplicationStatus.service;
 
 
+import capstone.zigtong.adminserver.domain.admin.Admin;
+import capstone.zigtong.adminserver.domain.employee.Employee;
+import capstone.zigtong.adminserver.domain.employee.repository.EmployeeRepository;
 import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.post.repository.PostRepository;
 import capstone.zigtong.adminserver.domain.worker.Worker;
 import capstone.zigtong.adminserver.domain.worker.repository.WorkerRepository;
+import capstone.zigtong.adminserver.domain.workerApplicationStatus.ApplicationStatus;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.dto.WorkerApplicationStatusDto;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.dto.WorkerApplicationStatusUpdateDto;
@@ -23,10 +27,12 @@ public class WorkerApplicationStatusService {
     private final WorkerRepository workerRepository;
     private final PostRepository postRepository;
     private final WorkerApplicationStatusRepository workerApplicationStatusRepository;
+    private final EmployeeRepository employeeRepository;
     public WorkerApplicationStatusDto createApplication(String postId, String workerId) {
         Post post = getPostById(postId);
         Worker worker = getWorkerById(workerId);
         WorkerApplicationStatus application = new WorkerApplicationStatus(post, worker);
+        workerApplicationStatusRepository.save(application);
         return WorkerApplicationStatusDto.fromEntity(application);
     }
 
@@ -34,9 +40,13 @@ public class WorkerApplicationStatusService {
     public WorkerApplicationStatusDto updateApplication(String postId, String workerApplicationId,
                                                         WorkerApplicationStatusUpdateDto requestDto) {
         WorkerApplicationStatus workerApplicationStatus = getWorkerApplicationStatus(workerApplicationId);
-
+        Post post = getPostById(postId);
         //Admin인지 확인하는 절차 필요. getPrincipal의 accountId와 post의 admin이 같은 지 비교해야함
         workerApplicationStatus.updateByDto(requestDto);
+        if(requestDto.getApplicationStatus().equals(ApplicationStatus.ACCEPT)){
+            Employee employee = new Employee(post, workerApplicationStatus.getWorker());
+            employeeRepository.save(employee);
+        }
         return WorkerApplicationStatusDto.fromEntity(workerApplicationStatus);
     }
 

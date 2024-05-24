@@ -1,5 +1,6 @@
 package capstone.zigtong.adminserver.domain.worker;
 
+import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -43,9 +44,15 @@ public class Worker {
     private Gender gender;
     @OneToMany(mappedBy = "worker")
     private List<WorkerApplicationStatus> workerApplicationStatusList = new ArrayList<>();
+    @OneToMany(mappedBy = "worker")
+    private List<Employee> employeeList = new ArrayList<>();
 
     public void addWorkerApplicationStatus(WorkerApplicationStatus workerApplicationStatus) {
         workerApplicationStatusList.add(workerApplicationStatus);
+    }
+
+    public void addEmployee(Employee employee) {
+        employeeList.add(employee);
     }
 
     /*@Builder(access = AccessLevel.PRIVATE)

@@ -106,4 +106,8 @@ public class Post extends BaseTimeEntity {
         workerApplicationStatusList.add(workerApplicationStatus);
         numberOfApplicants++;
     }
+
+    public void addEmployee(Employee employee) {
+        employeeList.add(employee);
+    }
 }

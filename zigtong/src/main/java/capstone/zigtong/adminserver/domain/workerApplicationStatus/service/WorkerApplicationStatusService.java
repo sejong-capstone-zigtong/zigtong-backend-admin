@@ -47,6 +47,9 @@ public class WorkerApplicationStatusService {
             Employee employee = new Employee(post, workerApplicationStatus.getWorker());
             employeeRepository.save(employee);
         }
+        /*else{
+            workerApplicationStatusRepository.delete(workerApplicationStatus);
+        }*/
         return WorkerApplicationStatusDto.fromEntity(workerApplicationStatus);
     }
 

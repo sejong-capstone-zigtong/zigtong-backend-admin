@@ -1,7 +1,5 @@
 package capstone.zigtong.adminserver.domain.employee.controller;
 
-import capstone.zigtong.adminserver.domain.employee.Employee;
-import capstone.zigtong.adminserver.domain.employee.dto.EmployeeCreateDto;
 import capstone.zigtong.adminserver.domain.employee.dto.EmployeeDto;
 import capstone.zigtong.adminserver.domain.employee.service.EmployeeService;
 import capstone.zigtong.adminserver.global.exception.CommonResponse;
@@ -10,17 +8,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static capstone.zigtong.adminserver.global.security.constant.EndpointConstant.ENDPOINT_PREFIX;
 
-/*@RestController
+@RestController
 @RequiredArgsConstructor
-@RequestMapping(ENDPOINT_PREFIX+"/admins")
+@RequestMapping(ENDPOINT_PREFIX)
 public class EmployeeContoller {
     private final EmployeeService employeeService;
-    @Operation(summary = "근로자 추가", description = "근로자를 추가합니다")
-    @PostMapping("/{adminId}/posts/{postId}/employee")
-    public ResponseEntity<CommonResponse> createEmployee(@PathVariable String adminId, @PathVariable String postId,
-                                                         @RequestBody EmployeeCreateDto employeeCreateDto){
-        EmployeeDto employeeDto = employeeService.createEmployee(adminId, postId, employeeCreateDto.toDto());
+    @Operation(summary = "근로자 조회", description = "해당 게시글의 근로자들을 조회합니다")
+    @GetMapping("/admins/{adminId}/posts/{postId}/employee")
+    public ResponseEntity<List<EmployeeDto>> getEmployee(@PathVariable String adminId, @PathVariable String postId){
+        List<EmployeeDto> employeeDtoList = employeeService.getEmployee(adminId, postId);
+        return ResponseEntity.ok()
+                .body(employeeDtoList);
     }
-}*/
+}

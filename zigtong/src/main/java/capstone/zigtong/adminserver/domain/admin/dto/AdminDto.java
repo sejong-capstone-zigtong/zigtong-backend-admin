@@ -45,7 +45,8 @@ public class AdminDto {
         this.role = role;
     }
 
-    public AdminDto(String accountId, String name, String businessName, String companyName, String address, String category, String phoneNumber, String businessNumber) {
+    public AdminDto(String id, String accountId, String name, String businessName, String companyName, String address, String category, String phoneNumber, String businessNumber) {
+        this.id = id;
         this.accountId = accountId;
         this.name = name;
         this.businessName = businessName;
@@ -58,6 +59,7 @@ public class AdminDto {
 
     public static AdminDto fromEntity(Admin admin) {
         return new AdminDto(
+                admin.getId(),
                 admin.getAccountId(),
                 admin.getName(),
                 admin.getBusinessName(),

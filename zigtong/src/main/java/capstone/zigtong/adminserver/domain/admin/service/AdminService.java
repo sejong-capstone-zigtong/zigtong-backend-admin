@@ -5,6 +5,7 @@ import capstone.zigtong.adminserver.domain.admin.dto.AdminDto;
 import capstone.zigtong.adminserver.domain.admin.dto.AdminSignInDto;
 import capstone.zigtong.adminserver.domain.admin.dto.SignInResponse;
 import capstone.zigtong.adminserver.domain.admin.repository.AdminRepository;
+import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import capstone.zigtong.adminserver.global.exception.CustomException;
 import capstone.zigtong.adminserver.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import static capstone.zigtong.adminserver.global.codes.ErrorCode.*;
-import static capstone.zigtong.adminserver.global.validation.ErrorMassage.INVALID_PASSWORD;
+
 
 @Service
 @RequiredArgsConstructor
@@ -95,5 +96,12 @@ public class AdminService {
         }
 
         return new SignInResponse(jwtProvider.generateAccessToken(admin.getId()));
+    }
+
+    public AdminDto getAdmin(String adminId) {
+        Admin admin = adminRepository.findById(adminId).orElseThrow(
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
+        );
+        return AdminDto.fromEntity(admin);
     }
 }

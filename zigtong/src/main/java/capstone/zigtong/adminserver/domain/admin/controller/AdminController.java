@@ -1,5 +1,6 @@
 package capstone.zigtong.adminserver.domain.admin.controller;
 
+import capstone.zigtong.adminserver.domain.admin.dto.AdminDto;
 import capstone.zigtong.adminserver.domain.admin.dto.AdminSignInDto;
 import capstone.zigtong.adminserver.domain.admin.dto.AdminSignUpDto;
 import capstone.zigtong.adminserver.domain.admin.dto.SignInResponse;
@@ -30,5 +31,12 @@ public class AdminController {
         SignInResponse signInResponse = adminService.signIn(adminSignInDto);
         return ResponseEntity.ok()
                 .body(new SignInResponse(signInResponse.getAccessToken()));
+    }
+    @Operation(summary = "내 정보 조회", description = "사업자(관리자)의 정보를 조회합니다")
+    @GetMapping("{adminId}/my-page")
+    public ResponseEntity<AdminDto>getAdmin(@PathVariable String adminId){
+        AdminDto adminDto = adminService.getAdmin(adminId);
+        return ResponseEntity.ok()
+                .body(adminDto);
     }
 }

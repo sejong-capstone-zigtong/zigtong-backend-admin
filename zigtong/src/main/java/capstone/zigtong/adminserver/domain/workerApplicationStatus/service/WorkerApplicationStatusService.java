@@ -17,9 +17,13 @@ import capstone.zigtong.adminserver.global.codes.ErrorCode;
 import capstone.zigtong.adminserver.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+
+import static capstone.zigtong.adminserver.global.codes.ErrorCode.ACCOUNT_NOT_FOUND;
+import static capstone.zigtong.adminserver.global.codes.ErrorCode.POST_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +32,7 @@ public class WorkerApplicationStatusService {
     private final PostRepository postRepository;
     private final WorkerApplicationStatusRepository workerApplicationStatusRepository;
     private final EmployeeRepository employeeRepository;
+    @Transactional
     public WorkerApplicationStatusDto createApplication(String postId, String workerId) {
         Post post = getPostById(postId);
         Worker worker = getWorkerById(workerId);
@@ -36,7 +41,7 @@ public class WorkerApplicationStatusService {
         return WorkerApplicationStatusDto.fromEntity(application);
     }
 
-
+    @Transactional
     public WorkerApplicationStatusDto updateApplication(String postId, String workerApplicationId,
                                                         WorkerApplicationStatusUpdateDto requestDto) {
         WorkerApplicationStatus workerApplicationStatus = getWorkerApplicationStatus(workerApplicationId);
@@ -61,19 +66,19 @@ public class WorkerApplicationStatusService {
     }
     private Post getPostById(String postId){
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new CustomException(ErrorCode.POST_NOT_FOUND)
+                () -> new CustomException(POST_NOT_FOUND)
         );
         return post;
     }
     private Worker getWorkerById(String workerId){
         Worker worker = workerRepository.findById(workerId).orElseThrow(
-                () -> new CustomException(ErrorCode.ACCOUNT_NOT_FOUND)
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
         );
         return worker;
     }
     private WorkerApplicationStatus getWorkerApplicationStatus(String workerApplicationStatusId){
         WorkerApplicationStatus workerApplicationStatus = workerApplicationStatusRepository.findById(workerApplicationStatusId).orElseThrow(
-                () -> new CustomException(ErrorCode.ACCOUNT_NOT_FOUND)
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
         );
         return workerApplicationStatus;
     }

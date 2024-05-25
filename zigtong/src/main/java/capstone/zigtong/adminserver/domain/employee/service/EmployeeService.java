@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static capstone.zigtong.adminserver.global.codes.ErrorCode.POST_NOT_FOUND;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
@@ -22,7 +25,7 @@ public class EmployeeService {
     }
     private Post getPostById(String postId){
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new CustomException(ErrorCode.POST_NOT_FOUND)
+                () -> new CustomException(POST_NOT_FOUND)
         );
         return post;
     }

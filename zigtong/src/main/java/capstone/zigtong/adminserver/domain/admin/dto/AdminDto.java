@@ -45,6 +45,30 @@ public class AdminDto {
         this.role = role;
     }
 
+    public AdminDto(String accountId, String name, String businessName, String companyName, String address, String category, String phoneNumber, String businessNumber) {
+        this.accountId = accountId;
+        this.name = name;
+        this.businessName = businessName;
+        this.companyName = companyName;
+        this.address = address;
+        this.category = category;
+        this.phoneNumber = phoneNumber;
+        this.businessNumber = businessNumber;
+    }
+
+    public static AdminDto fromEntity(Admin admin) {
+        return new AdminDto(
+                admin.getAccountId(),
+                admin.getName(),
+                admin.getBusinessName(),
+                admin.getCompanyName(),
+                admin.getAddress(),
+                admin.getCategory(),
+                admin.getPhoneNumber(),
+                admin.getBusinessNumber()
+        );
+    }
+
     public Admin toEntity(String encryptedPassword){
         return new Admin(accountId, encryptedPassword, name, companyName, businessName, address, phoneNumber, businessNumber, category, role);
     }

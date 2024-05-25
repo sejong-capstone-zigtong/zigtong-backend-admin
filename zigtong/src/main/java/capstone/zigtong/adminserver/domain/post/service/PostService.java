@@ -15,6 +15,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
+import static capstone.zigtong.adminserver.global.codes.ErrorCode.ACCOUNT_NOT_FOUND;
+import static capstone.zigtong.adminserver.global.codes.ErrorCode.POST_NOT_FOUND;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -31,7 +34,7 @@ public class PostService {
     public PostDto updatePost(String adminId, String accountId, String postId, PostDto postDto) {
     Admin admin = getAdminById(adminId);    //accountId와 동일한 admin 인지 검증?
     Post post = postRepository.findById(postId).orElseThrow(
-            () -> new CustomException(ErrorCode.POST_NOT_FOUND)
+            () -> new CustomException(POST_NOT_FOUND)
     );
     post.updateByDto(postDto);
     return PostDto.fromEntity(post);
@@ -46,23 +49,23 @@ public class PostService {
     }
     public PostDto getPost(String adminId, String postId) {
         Post post = postRepository.findById(postId).orElseThrow(
-                () -> new CustomException(ErrorCode.POST_NOT_FOUND)
+                () -> new CustomException(POST_NOT_FOUND)
         );
         return PostDto.fromEntity(post);
     }
     private Admin getAdminById(String adminId){
         Admin admin = adminRepository.findById(adminId).orElseThrow(
-                () -> new CustomException(ErrorCode.ACCOUNT_NOT_FOUND)
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
         );
         return admin;
     }
 
     public void deletePost(String adminId, String postId) {
         Admin admin = adminRepository.findById(adminId).orElseThrow(
-                () -> new CustomException(ErrorCode.ACCOUNT_NOT_FOUND)
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
         );
         Post post = postRepository.findById(postId).orElseThrow(
-                ()->new CustomException(ErrorCode.POST_NOT_FOUND)
+                ()->new CustomException(POST_NOT_FOUND)
         );
         postRepository.delete(post);
     }

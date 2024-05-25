@@ -2,8 +2,12 @@ package capstone.zigtong.adminserver.domain.admin.service;
 
 import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.admin.dto.AdminDto;
+import capstone.zigtong.adminserver.domain.admin.dto.AdminSignInDto;
+import capstone.zigtong.adminserver.domain.admin.dto.SignInResponse;
 import capstone.zigtong.adminserver.domain.admin.repository.AdminRepository;
+import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import capstone.zigtong.adminserver.global.exception.CustomException;
+import capstone.zigtong.adminserver.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,12 +25,14 @@ import java.util.Map;
 
 import static capstone.zigtong.adminserver.global.codes.ErrorCode.*;
 
+
 @Service
 @RequiredArgsConstructor
 public class AdminService {
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
     private final RestTemplate restTemplate;
+    private final JwtProvider jwtProvider;
 
     @Transactional
     public void signUp(AdminDto adminDto){
@@ -46,7 +52,7 @@ public class AdminService {
     }
 
     private void verifyBusinessRegistration(String businessNumber) {
-        String url = "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=Lqfk8fMXREHPKOEQwgfseb25DBkXLAgrqgxeQ2K9/NEdTgKF7tAqNRYXyqaDjxSdPmIP3BQh0Jb2JGyPDdeioQ==";
+        String url = "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=Lqfk8fMXREHPKOEQwgfseb25DBkXLAgrqgxeQ2K9/NEdTgKF7tAqNRYXyqaDjxSdPmIP3BQh0Jb2JGyPDdeioQ==";
 
         Map<String, Object> request = new HashMap<>();
         request.put("b_no", Collections.singletonList(businessNumber));
@@ -72,11 +78,30 @@ public class AdminService {
                     throw new CustomException(INVALID_BUSINESS_REGISTRATION);
                 }
             } else {
-                throw new CustomException(INVALID_BUSINESS_REGISTRATION);
+                throw new CustomException( INVALID_BUSINESS_REGISTRATION);
             }
         } catch (Exception e) {
             //e.printStackTrace();
             throw new CustomException(INVALID_BUSINESS_REGISTRATION);
         }
+    }
+
+
+    public SignInResponse signIn(AdminSignInDto adminSignInDto) {
+        Admin admin = adminRepository.findByAccountId(adminSignInDto.getAccountId())
+                .orElseThrow(() -> new CustomException(ACCOUNT_NOT_FOUND));
+
+        if (!passwordEncoder.matches(adminSignInDto.getPassword(), admin.getPassword())) {
+            throw new CustomException(MISMATCHED_PASSWORD);
+        }
+
+        return new SignInResponse(jwtProvider.generateAccessToken(admin.getId()));
+    }
+
+    public AdminDto getAdmin(String adminId) {
+        Admin admin = adminRepository.findById(adminId).orElseThrow(
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
+        );
+        return AdminDto.fromEntity(admin);
     }
 }

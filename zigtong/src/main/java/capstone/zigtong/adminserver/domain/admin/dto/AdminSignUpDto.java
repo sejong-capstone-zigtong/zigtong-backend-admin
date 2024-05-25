@@ -11,7 +11,7 @@ import static capstone.zigtong.adminserver.global.validation.Regex.*;
 @Data
 public class AdminSignUpDto {
     @NotBlank
-    @Pattern(regexp = MEMBER_ACCOUNT_REGEX, message = INVALID_MEMBER_ACCOUNT)
+    @Pattern(regexp = MEMBER_ACCOUNT_REGEX, message = INVALID_ACCOUNT)
     private String accountId;
     @NotBlank
     @Pattern(regexp = PASSWORD_REGEX, message = INVALID_PASSWORD)

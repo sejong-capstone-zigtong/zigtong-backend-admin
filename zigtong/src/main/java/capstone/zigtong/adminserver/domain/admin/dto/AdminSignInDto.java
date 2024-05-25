@@ -10,9 +10,9 @@ import static capstone.zigtong.adminserver.global.validation.Regex.PASSWORD_REGE
 
 @Data
 public class AdminSignInDto {
-    @NotBlank(message = EMPTY_MEMBER_ACCOUNT)
-    @Pattern(regexp = MEMBER_ACCOUNT_REGEX, message = INVALID_MEMBER_ACCOUNT)
-    String memberAccount;
+    @NotBlank(message = EMPTY_ACCOUNT)
+    @Pattern(regexp = MEMBER_ACCOUNT_REGEX, message = INVALID_ACCOUNT)
+    String accountId;
     @NotBlank(message = EMPTY_PASSWORD)
     @Pattern(regexp = PASSWORD_REGEX, message = INVALID_PASSWORD)
     String password;

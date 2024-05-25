@@ -2,8 +2,11 @@ package capstone.zigtong.adminserver.domain.admin.service;
 
 import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.admin.dto.AdminDto;
+import capstone.zigtong.adminserver.domain.admin.dto.AdminSignInDto;
+import capstone.zigtong.adminserver.domain.admin.dto.SignInResponse;
 import capstone.zigtong.adminserver.domain.admin.repository.AdminRepository;
 import capstone.zigtong.adminserver.global.exception.CustomException;
+import capstone.zigtong.adminserver.global.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import static capstone.zigtong.adminserver.global.codes.ErrorCode.*;
+import static capstone.zigtong.adminserver.global.validation.ErrorMassage.INVALID_PASSWORD;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +31,7 @@ public class AdminService {
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
     private final RestTemplate restTemplate;
+    private final JwtProvider jwtProvider;
 
     @Transactional
     public void signUp(AdminDto adminDto){
@@ -72,11 +77,23 @@ public class AdminService {
                     throw new CustomException(INVALID_BUSINESS_REGISTRATION);
                 }
             } else {
-                throw new CustomException(INVALID_BUSINESS_REGISTRATION);
+                throw new CustomException( INVALID_BUSINESS_REGISTRATION);
             }
         } catch (Exception e) {
             //e.printStackTrace();
             throw new CustomException(INVALID_BUSINESS_REGISTRATION);
         }
+    }
+
+
+    public SignInResponse signIn(AdminSignInDto adminSignInDto) {
+        Admin admin = adminRepository.findByAccountId(adminSignInDto.getAccountId())
+                .orElseThrow(() -> new CustomException(ACCOUNT_NOT_FOUND));
+
+        if (!passwordEncoder.matches(adminSignInDto.getPassword(), admin.getPassword())) {
+            throw new CustomException(MISMATCHED_PASSWORD);
+        }
+
+        return new SignInResponse(jwtProvider.generateAccessToken(admin.getId()));
     }
 }

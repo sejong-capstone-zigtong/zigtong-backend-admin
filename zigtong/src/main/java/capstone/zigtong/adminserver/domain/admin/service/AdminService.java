@@ -46,7 +46,7 @@ public class AdminService {
     }
 
     private void verifyBusinessRegistration(String businessNumber) {
-        String url = "https://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=Lqfk8fMXREHPKOEQwgfseb25DBkXLAgrqgxeQ2K9/NEdTgKF7tAqNRYXyqaDjxSdPmIP3BQh0Jb2JGyPDdeioQ==";
+        String url = "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=Lqfk8fMXREHPKOEQwgfseb25DBkXLAgrqgxeQ2K9/NEdTgKF7tAqNRYXyqaDjxSdPmIP3BQh0Jb2JGyPDdeioQ==";
 
         Map<String, Object> request = new HashMap<>();
         request.put("b_no", Collections.singletonList(businessNumber));

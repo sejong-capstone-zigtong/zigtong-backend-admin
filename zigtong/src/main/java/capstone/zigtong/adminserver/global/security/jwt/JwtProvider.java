@@ -17,6 +17,8 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
+import static io.jsonwebtoken.security.Keys.secretKeyFor;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
@@ -83,9 +85,10 @@ public class JwtProvider {
     }
 
     private Key getTokenKey() {
-        byte[] keyBytes = ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+        /*byte[] keyBytes = ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
 
-        return Keys.hmacShaKeyFor(keyBytes);
+        return Keys.hmacShaKeyFor(keyBytes);*/
+        return Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
 

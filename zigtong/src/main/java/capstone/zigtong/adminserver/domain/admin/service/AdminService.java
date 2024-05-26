@@ -95,7 +95,7 @@ public class AdminService {
             throw new CustomException(MISMATCHED_PASSWORD);
         }
 
-        return new SignInResponse(jwtProvider.generateAccessToken(admin.getId()));
+        return new SignInResponse(admin.getId(), jwtProvider.generateAccessToken(admin.getId()));
     }
 
     public AdminDto getAdmin(String adminId) {

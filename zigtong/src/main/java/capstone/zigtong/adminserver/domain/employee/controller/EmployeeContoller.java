@@ -20,7 +20,7 @@ public class EmployeeContoller {
     @Operation(summary = "근로자 조회", description = "해당 게시글의 근로자들을 조회합니다")
     @GetMapping("/admins/{adminId}/posts/{postId}/employee")
     public ResponseEntity<List<EmployeeDto>> getEmployee(@PathVariable String adminId, @PathVariable String postId){
-        List<EmployeeDto> employeeDtoList = employeeService.getEmployee(adminId, postId);
+        List<EmployeeDto> employeeDtoList = employeeService.getEmployee(adminId, Integer.valueOf(postId));
         return ResponseEntity.ok()
                 .body(employeeDtoList);
     }

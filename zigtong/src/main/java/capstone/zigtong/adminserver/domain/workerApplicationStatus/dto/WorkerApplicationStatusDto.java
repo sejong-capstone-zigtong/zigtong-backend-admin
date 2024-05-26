@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorkerApplicationStatusDto {
-    private String  id;
+    private Integer  id;
     private ApplicationStatus applicationStatus;
     private Worker worker;
     public static WorkerApplicationStatusDto fromEntity(WorkerApplicationStatus application) {

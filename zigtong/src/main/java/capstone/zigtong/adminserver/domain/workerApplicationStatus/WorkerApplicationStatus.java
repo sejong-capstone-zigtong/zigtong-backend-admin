@@ -14,8 +14,8 @@ import org.hibernate.annotations.UuidGenerator;
 public class WorkerApplicationStatus {
     @Id
     @UuidGenerator
-    @Column(name = "id", columnDefinition = "char(36)")
-    private String id;
+    @Column(name = "id", columnDefinition = "INT UNSIGNED")
+    private Integer id;
     @Column(nullable = false)
     private ApplicationStatus applicationStatus;
     @JoinColumn(name="post_id")

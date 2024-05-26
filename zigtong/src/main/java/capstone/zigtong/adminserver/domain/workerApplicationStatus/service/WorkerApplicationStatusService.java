@@ -33,7 +33,7 @@ public class WorkerApplicationStatusService {
     private final WorkerApplicationStatusRepository workerApplicationStatusRepository;
     private final EmployeeRepository employeeRepository;
     @Transactional
-    public WorkerApplicationStatusDto createApplication(String postId, String workerId) {
+    public WorkerApplicationStatusDto createApplication(Integer postId, String workerId) {
         Post post = getPostById(postId);
         Worker worker = getWorkerById(workerId);
         WorkerApplicationStatus application = new WorkerApplicationStatus(post, worker);
@@ -42,7 +42,7 @@ public class WorkerApplicationStatusService {
     }
 
     @Transactional
-    public WorkerApplicationStatusDto updateApplication(String postId, String workerApplicationId,
+    public WorkerApplicationStatusDto updateApplication(Integer postId, Integer workerApplicationId,
                                                         WorkerApplicationStatusUpdateDto requestDto) {
         WorkerApplicationStatus workerApplicationStatus = getWorkerApplicationStatus(workerApplicationId);
         Post post = getPostById(postId);
@@ -58,13 +58,13 @@ public class WorkerApplicationStatusService {
         return WorkerApplicationStatusDto.fromEntity(workerApplicationStatus);
     }
 
-    public List<WorkerApplicationStatusDto> getApplications(String postId) {
+    public List<WorkerApplicationStatusDto> getApplications(Integer postId) {
         Post post = getPostById(postId);
         return post.getWorkerApplicationStatusList().stream()
                 .map(WorkerApplicationStatusDto::fromEntity)
                 .toList();
     }
-    private Post getPostById(String postId){
+    private Post getPostById(Integer postId){
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new CustomException(POST_NOT_FOUND)
         );
@@ -76,7 +76,7 @@ public class WorkerApplicationStatusService {
         );
         return worker;
     }
-    private WorkerApplicationStatus getWorkerApplicationStatus(String workerApplicationStatusId){
+    private WorkerApplicationStatus getWorkerApplicationStatus(Integer workerApplicationStatusId){
         WorkerApplicationStatus workerApplicationStatus = workerApplicationStatusRepository.findById(workerApplicationStatusId).orElseThrow(
                 () -> new CustomException(ACCOUNT_NOT_FOUND)
         );

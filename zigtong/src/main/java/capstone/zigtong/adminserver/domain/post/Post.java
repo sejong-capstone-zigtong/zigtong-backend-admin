@@ -22,8 +22,8 @@ import java.util.List;
 public class Post extends BaseTimeEntity {
     @Id
     @UuidGenerator
-    @Column(name = "id", columnDefinition = "char(36)")
-    private String id;
+    @Column(name = "id", columnDefinition = "INT UNSIGNED")
+    private Integer id;
     @Column(nullable = false)
     private String content;
     @Column(nullable = false)

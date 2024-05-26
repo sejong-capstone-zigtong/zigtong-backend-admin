@@ -31,7 +31,7 @@ public class PostController {
         PostDto postDto = postService.createPost(adminId, accountId, postCreateDto.toDto());
 
         return ResponseEntity.ok()
-                .body(new CommonResponse(postDto.getId(), "successfully created"));
+                .body(new CommonResponse(postDto.getId().toString(), "successfully created"));
     }
     @Operation(summary = "게시글 수정", description = "구인 게시글을 수정합니다")
     @PutMapping("/{adminId}/posts/{postId}")
@@ -45,9 +45,9 @@ public class PostController {
         String accountId = principal.getUsername();*/
         String accountId = "1";
         PostDto postDto =
-                postService.updatePost(adminId, accountId, postId, postUpdateDto.toDto());
+                postService.updatePost(adminId, accountId, Integer.valueOf(postId), postUpdateDto.toDto());
         return ResponseEntity.ok()
-                .body(new CommonResponse(postDto.getId(), "successfully updated"));
+                .body(new CommonResponse(postDto.getId().toString(), "successfully updated"));
     }
     @Operation(summary = "전체 게시글 조회", description = "전체 구인 게시글을 조회합니다")
     @GetMapping("/{adminId}/posts")
@@ -59,14 +59,14 @@ public class PostController {
     @Operation(summary = "게시글 조회", description = "게시글id에 해당하는 구인 게시글을 조회합니다")
     @GetMapping("/{adminId}/posts/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable String adminId, @PathVariable String postId){
-        PostDto postDto = postService.getPost(adminId, postId);
+        PostDto postDto = postService.getPost(adminId, Integer.valueOf(postId));
         return ResponseEntity.ok()
                 .body(postDto);
     }
     @Operation(summary = "게시글 삭제", description = "게시글id에 해당하는 구인 게시글을 삭제합니다")
     @DeleteMapping("/{adminId}/posts/{postId}")
     public ResponseEntity<String> deletePost(@PathVariable String adminId, @PathVariable String postId){
-        postService.deletePost(adminId, postId);
+        postService.deletePost(adminId, Integer.valueOf(postId));
         return ResponseEntity.ok()
                 .body("successfully deleted");
     }

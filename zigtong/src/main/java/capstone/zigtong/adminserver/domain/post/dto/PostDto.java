@@ -14,7 +14,7 @@ import java.time.LocalTime;
 @Data
 @AllArgsConstructor
 public class PostDto {
-    private String id;
+    private Integer id;
     private String content;
     private BigInteger wage;
     private String address;

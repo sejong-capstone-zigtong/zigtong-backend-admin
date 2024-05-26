@@ -30,7 +30,7 @@ public class AdminController {
     public ResponseEntity<SignInResponse>adminSignIn(@RequestBody AdminSignInDto adminSignInDto){
         SignInResponse signInResponse = adminService.signIn(adminSignInDto);
         return ResponseEntity.ok()
-                .body(new SignInResponse(signInResponse.getAccessToken()));
+                .body(new SignInResponse(signInResponse.getId(), signInResponse.getAccessToken()));
     }
 
     @Operation(summary = "내 정보 조회", description = "사업자(관리자)의 정보를 조회합니다")

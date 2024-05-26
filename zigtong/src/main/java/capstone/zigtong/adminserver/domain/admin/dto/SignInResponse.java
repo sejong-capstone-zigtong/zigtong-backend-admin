@@ -7,4 +7,5 @@ import lombok.Getter;
 @Getter
 public class SignInResponse {
     String accessToken;
+    String id;
 }

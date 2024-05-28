@@ -25,6 +25,8 @@ public class Post extends BaseTimeEntity {
     @Column(columnDefinition = "INT UNSIGNED")
     private Integer id;
     @Column(nullable = false)
+    private String title;
+    @Column(nullable = false)
     private String content;
     @Column(nullable = false)
     private BigInteger wage;
@@ -64,6 +66,8 @@ public class Post extends BaseTimeEntity {
     @OneToMany(mappedBy = "post")
     private List<WorkerApplicationStatus> workerApplicationStatusList = new ArrayList<>();
 
+
+
     public Post(Admin admin, PostDto postDto) {
         this.admin = admin;
         admin.addPostList(this);
@@ -79,6 +83,7 @@ public class Post extends BaseTimeEntity {
         this.recruitmentEndTime = postDto.getRecruitmentEndTime();
         this.lunchTime = postDto.getLunchTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
+        this.title = postDto.getTitle();
     }
 
     public void updateByDto(PostDto postDto) {
@@ -97,6 +102,7 @@ public class Post extends BaseTimeEntity {
         this.lunchTime = postDto.getLunchTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
         this.postStatus = postDto.getPostStatus();
+        this.title = postDto.getTitle();
     }
 
     public void addWorkerApplicationStatus(WorkerApplicationStatus workerApplicationStatus) {

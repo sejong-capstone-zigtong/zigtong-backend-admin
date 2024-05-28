@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 @Data
 public class PostCreateDto {
+
     @NotBlank
     private String content;
     @NotBlank
@@ -41,6 +42,8 @@ public class PostCreateDto {
     private Integer numberOfRecruits;
     //@NotBlank
     //private PostStatus postStatus;
+    @NotBlank
+    private String title;
 
     public PostDto toDto() {
         return new PostDto(
@@ -57,8 +60,9 @@ public class PostCreateDto {
                 recruitmentStartTime,
                 recruitmentEndTime,
                 lunchTime,
-                numberOfRecruits
+                numberOfRecruits,
                 //postStatus
+                title
         );
     }
 }

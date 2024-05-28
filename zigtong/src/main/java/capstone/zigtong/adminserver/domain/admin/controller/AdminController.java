@@ -46,8 +46,8 @@ public class AdminController {
         return ResponseEntity.ok()
                 .body(adminDto);
     }
-    private User getPrincipal() {
+    /*private User getPrincipal() {
         return (User)
                 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+    }*/
 }

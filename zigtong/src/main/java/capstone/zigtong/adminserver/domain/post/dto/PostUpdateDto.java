@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 @Data
 public class PostUpdateDto {
+
     private String content;
     private BigInteger wage;
     private String address;
@@ -25,6 +26,7 @@ public class PostUpdateDto {
     private LocalTime lunchTime;
     private Integer numberOfRecruits;
     private PostStatus postStatus;
+    private String title;
     public PostDto toDto() {
         return new PostDto(
                 content,
@@ -38,7 +40,8 @@ public class PostUpdateDto {
                 recruitmentStartTime,
                 recruitmentEndTime,
                 lunchTime,
-                numberOfRecruits
+                numberOfRecruits,
+                title
         );
     }
 }

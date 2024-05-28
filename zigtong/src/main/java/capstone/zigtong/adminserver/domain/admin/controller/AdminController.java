@@ -38,10 +38,10 @@ public class AdminController {
     @Operation(summary = "내 정보 조회", description = "사업자(관리자)의 정보를 조회합니다")
     @GetMapping("{adminId}/my-page")
     public ResponseEntity<AdminDto>getAdmin(@PathVariable String adminId){
-        org.springframework.security.core.userdetails.User principal =
+        /*org.springframework.security.core.userdetails.User principal =
                 getPrincipal();
         String accountId = principal.getUsername();
-        System.out.println("accountId = " + accountId);
+        System.out.println("accountId = " + accountId);*/
         AdminDto adminDto = adminService.getAdmin(adminId);
         return ResponseEntity.ok()
                 .body(adminDto);

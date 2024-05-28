@@ -6,15 +6,14 @@ import capstone.zigtong.adminserver.domain.workerApplicationStatus.dto.WorkerApp
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Getter
 @NoArgsConstructor
 public class WorkerApplicationStatus {
     @Id
-    @UuidGenerator
-    @Column(name = "id", columnDefinition = "INT UNSIGNED")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "SMALLINT UNSIGNED")
     private Integer id;
     @Column(nullable = false)
     private ApplicationStatus applicationStatus;

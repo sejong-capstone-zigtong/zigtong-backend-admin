@@ -21,8 +21,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Post extends BaseTimeEntity {
     @Id
-    @UuidGenerator
-    @Column(name = "id", columnDefinition = "INT UNSIGNED")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "INT UNSIGNED")
     private Integer id;
     @Column(nullable = false)
     private String content;

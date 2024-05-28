@@ -52,7 +52,9 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime recruitmentEndTime;
     @Column(nullable = false)
-    private LocalTime lunchTime;
+    private LocalTime lunchStartTime;
+    @Column(nullable = false)
+    private LocalTime lunchEndTime;
     @Column(nullable = false)
     private Integer numberOfRecruits;
     @Column(nullable = false)
@@ -81,7 +83,8 @@ public class Post extends BaseTimeEntity {
         this.wageType = postDto.getWageType();
         this.recruitmentStartTime = postDto.getRecruitmentStartTime();
         this.recruitmentEndTime = postDto.getRecruitmentEndTime();
-        this.lunchTime = postDto.getLunchTime();
+        this.lunchStartTime = postDto.getLunchStartTime();
+        this.lunchEndTime = postDto.getLunchEndTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
         this.title = postDto.getTitle();
     }
@@ -99,7 +102,8 @@ public class Post extends BaseTimeEntity {
         this.wageType = postDto.getWageType();
         this.recruitmentStartTime = postDto.getRecruitmentStartTime();
         this.recruitmentEndTime = postDto.getRecruitmentEndTime();
-        this.lunchTime = postDto.getLunchTime();
+        this.lunchStartTime = postDto.getLunchStartTime();
+        this.lunchEndTime = postDto.getLunchEndTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
         this.postStatus = postDto.getPostStatus();
         this.title = postDto.getTitle();

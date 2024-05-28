@@ -37,7 +37,9 @@ public class PostCreateDto {
     @NotBlank
     private LocalDateTime recruitmentEndTime;
     @NotBlank
-    private LocalTime lunchTime;
+    private LocalTime lunchStartTime;
+    @NotBlank
+    private LocalTime lunchEndTime;
     @NotBlank
     private Integer numberOfRecruits;
     //@NotBlank
@@ -59,7 +61,8 @@ public class PostCreateDto {
                 wageType,
                 recruitmentStartTime,
                 recruitmentEndTime,
-                lunchTime,
+                lunchStartTime,
+                lunchEndTime,
                 numberOfRecruits,
                 //postStatus
                 title

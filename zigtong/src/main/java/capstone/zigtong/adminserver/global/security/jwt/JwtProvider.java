@@ -63,8 +63,11 @@ public class JwtProvider {
     }
 
     private Claims extractAllClaims(String token) {
-        Key signingKey = getTokenKey();
+        System.out.println("token1 = " + token);
 
+        Key signingKey = getTokenKey();
+        System.out.println("signingKey = " + signingKey);
+        System.out.println("여기");
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(signingKey)
@@ -85,10 +88,10 @@ public class JwtProvider {
     }
 
     private Key getTokenKey() {
-        /*byte[] keyBytes = ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+        byte[] keyBytes = ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
 
-        return Keys.hmacShaKeyFor(keyBytes);*/
-        return Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        return Keys.hmacShaKeyFor(keyBytes);
+        //return Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
 

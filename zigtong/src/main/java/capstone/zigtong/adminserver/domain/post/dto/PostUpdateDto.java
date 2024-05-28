@@ -23,7 +23,8 @@ public class PostUpdateDto {
     private WageType wageType;
     private LocalDateTime recruitmentStartTime;
     private LocalDateTime recruitmentEndTime;
-    private LocalTime lunchTime;
+    private LocalTime lunchStartTime;
+    private LocalTime lunchEndTime;
     private Integer numberOfRecruits;
     private PostStatus postStatus;
     private String title;
@@ -39,7 +40,8 @@ public class PostUpdateDto {
                 wageType,
                 recruitmentStartTime,
                 recruitmentEndTime,
-                lunchTime,
+                lunchStartTime,
+                lunchEndTime,
                 numberOfRecruits,
                 title
         );

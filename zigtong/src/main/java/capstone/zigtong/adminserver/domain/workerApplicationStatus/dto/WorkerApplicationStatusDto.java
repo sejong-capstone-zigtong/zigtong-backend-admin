@@ -1,6 +1,7 @@
 package capstone.zigtong.adminserver.domain.workerApplicationStatus.dto;
 
 import capstone.zigtong.adminserver.domain.worker.Worker;
+import capstone.zigtong.adminserver.domain.worker.dto.WorkerDto;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.ApplicationStatus;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import lombok.AllArgsConstructor;
@@ -13,12 +14,15 @@ import lombok.NoArgsConstructor;
 public class WorkerApplicationStatusDto {
     private Integer  id;
     private ApplicationStatus applicationStatus;
-    private Worker worker;
+    private WorkerDto workerDto;
+
     public static WorkerApplicationStatusDto fromEntity(WorkerApplicationStatus application) {
+        Worker worker = application.getWorker();
+        WorkerDto dto = WorkerDto.FromEntityForWorkerApplicationStatusDto(worker);
         return new WorkerApplicationStatusDto(
                 application.getId(),
                 application.getApplicationStatus(),
-                application.getWorker()
+                dto
         );
     }
 }

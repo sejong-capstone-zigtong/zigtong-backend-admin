@@ -19,7 +19,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 public class WorkerApplicationStatusController {
     private final WorkerApplicationStatusService workerApplicationStatusService;
     @Operation(summary = "구직자 지원현황 생성", description = "구직자 지원현황 대한 데이터를 생성합니다(생성시 status: DEFAULT 값 넣었음")
-    @PostMapping("/workers/{workerId}worker-application-status")
+    @PostMapping("/workers/{workerId}/worker-application-status")
     public ResponseEntity<CommonResponse> createApplication(@PathVariable String adminId, @PathVariable String postId, @PathVariable String workerId){
         WorkerApplicationStatusDto workerApplicationStatusDto = workerApplicationStatusService.createApplication(Integer.valueOf(postId), workerId);
         return ResponseEntity.ok()

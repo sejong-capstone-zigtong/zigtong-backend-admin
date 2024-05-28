@@ -69,8 +69,7 @@ public class WebSecurityConfig {
                                         .permitAll()
                                         .requestMatchers(SwaggerUris.getAllUris().toArray(String[]::new))
                                         .permitAll()
-                                        .anyRequest()
-                                        .authenticated()*/
+                                        .anyRequest()*/
                                         .anyRequest()
                                         .permitAll()
                 );

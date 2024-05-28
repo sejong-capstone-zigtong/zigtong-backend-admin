@@ -1,6 +1,7 @@
 package capstone.zigtong.adminserver.domain.worker;
 
 import capstone.zigtong.adminserver.domain.employee.Employee;
+import capstone.zigtong.adminserver.domain.resume.Resume;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -46,6 +47,9 @@ public class Worker {
     private List<WorkerApplicationStatus> workerApplicationStatusList = new ArrayList<>();
     @OneToMany(mappedBy = "worker")
     private List<Employee> employeeList = new ArrayList<>();
+
+    @OneToOne(mappedBy = "worker", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private Resume resume;
 
     public void addWorkerApplicationStatus(WorkerApplicationStatus workerApplicationStatus) {
         workerApplicationStatusList.add(workerApplicationStatus);

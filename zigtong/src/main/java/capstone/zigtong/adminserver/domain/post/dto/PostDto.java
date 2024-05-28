@@ -31,11 +31,12 @@ public class PostDto {
     private LocalTime lunchTime;
     private Integer numberOfRecruits;
     private PostStatus postStatus;
+    private String title;
 
     public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime,
                    LocalDateTime endTime, String category,String phoneNumber,
                    WageType wageType, LocalDateTime recruitmentStartTime,
-                   LocalDateTime recruitmentEndTime, LocalTime lunchTime, Integer numberOfRecruits) {
+                   LocalDateTime recruitmentEndTime, LocalTime lunchTime, Integer numberOfRecruits, String title) {
 
         this.content = content;
         this.wage = wage;
@@ -51,6 +52,7 @@ public class PostDto {
         this.recruitmentEndTime = recruitmentEndTime;
         this.lunchTime = lunchTime;
         this.numberOfRecruits = numberOfRecruits;
+        this.title = title;
         //this.postStatus = postStatus;
     }
 
@@ -71,7 +73,8 @@ public class PostDto {
                 post.getRecruitmentEndTime(),
                 post.getLunchTime(),
                 post.getNumberOfRecruits(),
-                post.getPostStatus()
+                post.getPostStatus(),
+                post.getTitle()
         );
     }
 }

@@ -17,13 +17,13 @@ import static capstone.zigtong.adminserver.global.codes.ErrorCode.POST_NOT_FOUND
 @RequiredArgsConstructor
 public class EmployeeService {
     private final PostRepository postRepository;
-    public List<EmployeeDto> getEmployee(String adminId, String postId) {
+    public List<EmployeeDto> getEmployee(String adminId, Integer postId) {
         Post post = getPostById(postId);
         return post.getEmployeeList().stream()
                 .map(EmployeeDto::fromEntity)
                 .toList();
     }
-    private Post getPostById(String postId){
+    private Post getPostById(Integer postId){
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new CustomException(POST_NOT_FOUND)
         );

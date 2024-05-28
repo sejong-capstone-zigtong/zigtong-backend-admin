@@ -31,7 +31,7 @@ public class PostService {
         return PostDto.fromEntity(post);
     }
 @Transactional
-    public PostDto updatePost(String adminId, String accountId, String postId, PostDto postDto) {
+    public PostDto updatePost(String adminId, String accountId, Integer postId, PostDto postDto) {
     Admin admin = getAdminById(adminId);    //accountId와 동일한 admin 인지 검증?
     Post post = postRepository.findById(postId).orElseThrow(
             () -> new CustomException(POST_NOT_FOUND)
@@ -47,7 +47,7 @@ public class PostService {
                 .map(PostDto::fromEntity)
                 .toList();
     }
-    public PostDto getPost(String adminId, String postId) {
+    public PostDto getPost(String adminId, Integer postId) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new CustomException(POST_NOT_FOUND)
         );
@@ -60,7 +60,7 @@ public class PostService {
         return admin;
     }
 
-    public void deletePost(String adminId, String postId) {
+    public void deletePost(String adminId, Integer postId) {
         Admin admin = adminRepository.findById(adminId).orElseThrow(
                 () -> new CustomException(ACCOUNT_NOT_FOUND)
         );

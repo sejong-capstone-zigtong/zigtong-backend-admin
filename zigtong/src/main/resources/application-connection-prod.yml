@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://zigtong-db.cvwsowqaspno.ap-northeast-2.rds.amazonaws.com:3306/zigtong-db?createDatabaseIfNotExist=true
+    url: jdbc:mysql://zigtong-db.cvwsowqaspno.ap-northeast-2.rds.amazonaws.com:3306/zigtong?createDatabaseIfNotExist=true
     username: admin
     password: 1q2w3e4r!
     driver-class-name: com.mysql.cj.jdbc.Driver

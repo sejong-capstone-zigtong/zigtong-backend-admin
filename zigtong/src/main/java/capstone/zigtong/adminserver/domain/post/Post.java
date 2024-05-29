@@ -117,4 +117,8 @@ public class Post extends BaseTimeEntity {
     public void addEmployee(Employee employee) {
         employeeList.add(employee);
     }
+
+    public boolean isAdmin(Admin admin) {
+        return this.admin.equals(admin);
+    }
 }

@@ -24,18 +24,21 @@ public class PostService {
     private final PostRepository postRepository;
     private final AdminRepository adminRepository;
     @Transactional
-    public PostDto createPost(String adminId, String accountId, PostDto postDto){
+    public PostDto createPost(String adminId,PostDto postDto){
         Admin admin = getAdminById(adminId);
         Post post = new Post(admin, postDto);
         postRepository.save(post);
         return PostDto.fromEntity(post);
     }
 @Transactional
-    public PostDto updatePost(String adminId, String accountId, Integer postId, PostDto postDto) {
-    Admin admin = getAdminById(adminId);    //accountId와 동일한 admin 인지 검증?
+    public PostDto updatePost(String adminId, Integer postId, PostDto postDto) {
+    Admin admin = getAdminById(adminId);
     Post post = postRepository.findById(postId).orElseThrow(
             () -> new CustomException(POST_NOT_FOUND)
     );
+    if(!post.isAdmin(admin)){
+        throw new IllegalArgumentException("수정 권한이 없습니다.");
+    }
     post.updateByDto(postDto);
     return PostDto.fromEntity(post);
     }
@@ -47,7 +50,7 @@ public class PostService {
                 .map(PostDto::fromEntity)
                 .toList();
     }
-    public PostDto getPost(String adminId, Integer postId) {
+    public PostDto getPost(Integer postId) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new CustomException(POST_NOT_FOUND)
         );
@@ -61,12 +64,13 @@ public class PostService {
     }
 
     public void deletePost(String adminId, Integer postId) {
-        Admin admin = adminRepository.findById(adminId).orElseThrow(
-                () -> new CustomException(ACCOUNT_NOT_FOUND)
-        );
+        Admin admin = getAdminById(adminId);
         Post post = postRepository.findById(postId).orElseThrow(
                 ()->new CustomException(POST_NOT_FOUND)
         );
+        if(!post.isAdmin(admin)){
+            throw new IllegalArgumentException("수정 권한이 없습니다.");
+        }
         postRepository.delete(post);
     }
 }

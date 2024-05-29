@@ -2,6 +2,7 @@ package capstone.zigtong.adminserver.domain.workerApplicationStatus.service;
 
 
 import capstone.zigtong.adminserver.domain.admin.Admin;
+import capstone.zigtong.adminserver.domain.admin.repository.AdminRepository;
 import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.employee.repository.EmployeeRepository;
 import capstone.zigtong.adminserver.domain.post.Post;
@@ -32,6 +33,7 @@ public class WorkerApplicationStatusService {
     private final PostRepository postRepository;
     private final WorkerApplicationStatusRepository workerApplicationStatusRepository;
     private final EmployeeRepository employeeRepository;
+    private final AdminRepository adminRepository;
     @Transactional
     public WorkerApplicationStatusDto createApplication(Integer postId, String workerId) {
         Post post = getPostById(postId);
@@ -42,11 +44,16 @@ public class WorkerApplicationStatusService {
     }
 
     @Transactional
-    public WorkerApplicationStatusDto updateApplication(Integer postId, Integer workerApplicationId,
+    public WorkerApplicationStatusDto updateApplication(String adminId, Integer postId, Integer workerApplicationId,
                                                         WorkerApplicationStatusUpdateDto requestDto) {
         WorkerApplicationStatus workerApplicationStatus = getWorkerApplicationStatus(workerApplicationId);
         Post post = getPostById(postId);
-        //Admin인지 확인하는 절차 필요. getPrincipal의 accountId와 post의 admin이 같은 지 비교해야함
+        Admin admin = adminRepository.findById(adminId).orElseThrow(
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
+        );
+        if(!post.isAdmin(admin)){
+            throw new IllegalArgumentException("수정 권한이 없습니다.");
+        }
         workerApplicationStatus.updateByDto(requestDto);
         if(requestDto.getApplicationStatus().equals(ApplicationStatus.ACCEPT)){
             Employee employee = new Employee(post, workerApplicationStatus.getWorker());

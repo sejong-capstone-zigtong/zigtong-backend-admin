@@ -11,7 +11,8 @@ public enum PublicUris {
     SIGN_IN("/admins/sign-in"),
     SIGN_UP("/admins/sign-up"),
     SEND_CODE("/auth/send-code"),
-    VERIFY("/auth/verify");
+    VERIFY("/auth/verify"),
+    BUSINESS_TYPE("/admins/business-type");
 
     private final String value;
 

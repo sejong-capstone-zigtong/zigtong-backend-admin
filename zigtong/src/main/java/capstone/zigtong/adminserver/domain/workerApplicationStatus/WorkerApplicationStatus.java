@@ -15,7 +15,8 @@ public class WorkerApplicationStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "SMALLINT UNSIGNED")
     private Integer id;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "application_status")
+    @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
     @JoinColumn(name="post_id")
     @ManyToOne(fetch = FetchType.LAZY)

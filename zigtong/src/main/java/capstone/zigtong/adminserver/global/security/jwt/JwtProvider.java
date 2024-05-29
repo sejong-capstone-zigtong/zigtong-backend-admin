@@ -40,21 +40,19 @@ public class JwtProvider {
         return token;
     }
 
-    public String generateAccessToken(@Nullable String memberId) {
+    public String generateAccessToken(@Nullable String adminId) {
         final Date now = new Date();
 
         // access token 생성
         String accessToken =
                 Jwts.builder()
-                        .setSubject(memberId)
+                        .setSubject(adminId)
                         .setIssuedAt(now)
                         .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_MILL_TIME))
                         .signWith(getTokenKey())
                         .compact();
-
         return accessToken;
     }
-
     public <T> T extractClaim(
             String token, Function<Claims, T> claimResolver) {
         Claims claims = extractAllClaims(token);
@@ -63,11 +61,8 @@ public class JwtProvider {
     }
 
     private Claims extractAllClaims(String token) {
-        System.out.println("token1 = " + token);
 
         Key signingKey = getTokenKey();
-        System.out.println("signingKey = " + signingKey);
-        System.out.println("여기");
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(signingKey)
@@ -79,7 +74,7 @@ public class JwtProvider {
         }
     }
 
-    public String extractMemberId(String token) {
+    public String extractAdminId(String token) {
         return extractClaim(token, (claims) -> claims.getSubject());
     }
 
@@ -88,10 +83,10 @@ public class JwtProvider {
     }
 
     private Key getTokenKey() {
-        /*byte[] keyBytes = ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+        byte[] keyBytes = ACCESS_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
 
-        return Keys.hmacShaKeyFor(keyBytes);*/
-        return Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        return Keys.hmacShaKeyFor(keyBytes);
+        //return Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
 
@@ -117,7 +112,7 @@ public class JwtProvider {
         return extractExpiration(token).before(new Date());
     }
 
-    public Authentication getAuthentication(String memberId) {
-        return new UsernamePasswordAuthenticationToken(memberId, null, null);
+    public Authentication getAuthentication(String adminId) {
+        return new UsernamePasswordAuthenticationToken(adminId, null, null);
     }
 }

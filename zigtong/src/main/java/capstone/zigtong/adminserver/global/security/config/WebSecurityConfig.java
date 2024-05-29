@@ -65,15 +65,16 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(
                         authorize ->
                                 authorize
-                                        /*.requestMatchers(PublicUris.getAllUrisWithEndpointPrefix().toArray(String[]::new))
+                                        .requestMatchers(PublicUris.getAllUrisWithEndpointPrefix().toArray(String[]::new))
                                         .permitAll()
                                         .requestMatchers(SwaggerUris.getAllUris().toArray(String[]::new))
                                         .permitAll()
-                                        .anyRequest()*/
                                         .anyRequest()
-                                        .permitAll()
-                );
-                //.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                                        .authenticated()
+
+          
+                )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

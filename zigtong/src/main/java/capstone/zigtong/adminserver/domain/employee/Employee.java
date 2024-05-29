@@ -1,6 +1,5 @@
 package capstone.zigtong.adminserver.domain.employee;
 
-import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.worker.Worker;
 import jakarta.persistence.*;
@@ -17,7 +16,8 @@ public class Employee {
     @Column(name = "id", columnDefinition = "char(36)")
     private String id;
     @Column(nullable = false)
-    private Workingstatus workingstatus;
+    @Enumerated(EnumType.STRING)
+    private WorkingStatus workingStatus;
     @Column(nullable = false)
     private boolean startAttendanceStatus;
     @Column(nullable = false)
@@ -35,6 +35,6 @@ public class Employee {
         post.addEmployee(this);
         this.worker = worker;
         worker.addEmployee(this);
-        workingstatus = Workingstatus.PENDING;
+        this.workingStatus = WorkingStatus.PENDING;
     }
 }

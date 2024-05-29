@@ -36,13 +36,16 @@ public class PostUpdateDto {
                 startTime,
                 endTime,
                 category,
+                numberOfApplicants,
                 phoneNumber,
+                recruitmentStatus,
                 wageType,
                 recruitmentStartTime,
                 recruitmentEndTime,
                 lunchStartTime,
                 lunchEndTime,
                 numberOfRecruits,
+                postStatus,
                 title
         );
     }

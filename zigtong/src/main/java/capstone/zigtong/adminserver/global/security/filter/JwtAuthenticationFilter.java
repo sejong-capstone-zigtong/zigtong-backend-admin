@@ -32,19 +32,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NotNull HttpServletResponse response,
             @NotNull FilterChain filterChain)
             throws ServletException, IOException {
-        /*String accessToken = jwtProvider.resolveToken(request, HeaderConstant.AUTHORIZATION);
+        String accessToken = jwtProvider.resolveToken(request, HeaderConstant.AUTHORIZATION);
         if (accessToken == null) {
             throw new CustomException(ErrorCode.UNAUTHORIZED);
         }
-
         boolean isAccessTokenValid = jwtProvider.isTokenValid(accessToken);
         if (!isAccessTokenValid) {
             throw new CustomException(ErrorCode.TOKEN_EXPIRED);
         }
 
-        String memberId = jwtProvider.extractMemberId(accessToken);
+        String adminId = jwtProvider.extractAdminId(accessToken);
         SecurityContextHolder.getContext()
-                .setAuthentication(jwtProvider.getAuthentication(memberId));*/
+                .setAuthentication(jwtProvider.getAuthentication(adminId));
 
         filterChain.doFilter(request, response);
     }

@@ -58,6 +58,27 @@ public class PostDto {
         //this.postStatus = postStatus;
     }
 
+    public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime, LocalDateTime endTime, String category, Integer numberOfApplicants, String phoneNumber, RecruitmentStatus recruitmentStatus,WageType wageType, LocalDateTime recruitmentStartTime, LocalDateTime recruitmentEndTime, LocalTime lunchStartTime, LocalTime lunchEndTime, Integer numberOfRecruits, PostStatus postStatus,String title) {
+
+        this.content = content;
+        this.wage = wage;
+        this.address = address;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.category = category;
+        this.numberOfApplicants = numberOfApplicants;
+        this.phoneNumber = phoneNumber;
+        this.recruitmentStatus = recruitmentStatus;
+        this.wageType = wageType;
+        this.recruitmentStartTime = recruitmentStartTime;
+        this.recruitmentEndTime = recruitmentEndTime;
+        this.lunchStartTime = lunchStartTime;
+        this.lunchEndTime = lunchEndTime;
+        this.numberOfRecruits = numberOfRecruits;
+        this.postStatus = postStatus;
+        this.title = title;
+    }
+
     public static PostDto fromEntity(Post post) {
         return new PostDto(
                 post.getId(),

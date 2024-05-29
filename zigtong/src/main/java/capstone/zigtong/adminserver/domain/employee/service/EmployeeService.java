@@ -17,7 +17,7 @@ import static capstone.zigtong.adminserver.global.codes.ErrorCode.POST_NOT_FOUND
 @RequiredArgsConstructor
 public class EmployeeService {
     private final PostRepository postRepository;
-    public List<EmployeeDto> getEmployee(String adminId, Integer postId) {
+    public List<EmployeeDto> getEmployee(Integer postId) {
         Post post = getPostById(postId);
         return post.getEmployeeList().stream()
                 .map(EmployeeDto::fromEntity)

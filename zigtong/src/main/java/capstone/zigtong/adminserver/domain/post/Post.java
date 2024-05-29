@@ -43,9 +43,11 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false, length = 11)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "recruitment_status")
+    @Enumerated(EnumType.STRING)
     private RecruitmentStatus recruitmentStatus = RecruitmentStatus.RECRUITING;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "wage_type")
+    @Enumerated(EnumType.STRING)
     private WageType wageType;
     @Column(nullable = false)
     private LocalDateTime recruitmentStartTime;
@@ -57,7 +59,8 @@ public class Post extends BaseTimeEntity {
     private LocalTime lunchEndTime;
     @Column(nullable = false)
     private Integer numberOfRecruits;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "post_status")
+    @Enumerated(EnumType.STRING)
     private PostStatus postStatus = PostStatus.PROCEEDING;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -80,12 +83,14 @@ public class Post extends BaseTimeEntity {
         this.endTime = postDto.getEndTime();
         this.category = postDto.getCategory();
         this.phoneNumber = postDto.getPhoneNumber();
+        this.recruitmentStatus = RecruitmentStatus.RECRUITING;
         this.wageType = postDto.getWageType();
         this.recruitmentStartTime = postDto.getRecruitmentStartTime();
         this.recruitmentEndTime = postDto.getRecruitmentEndTime();
         this.lunchStartTime = postDto.getLunchStartTime();
         this.lunchEndTime = postDto.getLunchEndTime();
         this.numberOfRecruits = postDto.getNumberOfRecruits();
+        this.postStatus = PostStatus.PROCEEDING;
         this.title = postDto.getTitle();
     }
 

@@ -18,7 +18,7 @@ public class WorkerDto {
     private LocalDate birthdate;
     private String nickname;
     private Gender gender;
-    private String uploadRul;
+    private String uploadUrl;
 
     public static WorkerDto FromEntityForWorkerApplicationStatusDto(Worker worker) {
         return new WorkerDto(

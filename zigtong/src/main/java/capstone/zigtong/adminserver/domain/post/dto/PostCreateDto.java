@@ -3,7 +3,9 @@ package capstone.zigtong.adminserver.domain.post.dto;
 import capstone.zigtong.adminserver.domain.post.PostStatus;
 import capstone.zigtong.adminserver.domain.post.RecruitmentStatus;
 import capstone.zigtong.adminserver.domain.post.WageType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigInteger;
@@ -12,39 +14,42 @@ import java.time.LocalTime;
 @Data
 public class PostCreateDto {
 
-    @NotBlank
+    @NotNull
     private String content;
-    @NotBlank
+    @NotNull
     private BigInteger wage;
-    @NotBlank
+    @NotNull
     private String address;
-    @NotBlank
+    @NotNull
     private LocalDateTime startTime;
-    @NotBlank
+    @NotNull
     private LocalDateTime endTime;
-    @NotBlank
+    @NotNull
     private String category;
     //@NotBlank
     //private Integer numberOfApplicants;
-    @NotBlank
+    @NotNull
     private String phoneNumber;
     //@NotBlank
     //private RecruitmentStatus recruitmentStatus;
-    @NotBlank
+    @NotNull
     private WageType wageType;
-    @NotBlank
+    @NotNull
     private LocalDateTime recruitmentStartTime;
-    @NotBlank
+    @NotNull
+
     private LocalDateTime recruitmentEndTime;
-    @NotBlank
+    @NotNull
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime lunchStartTime;
-    @NotBlank
+    @NotNull
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime lunchEndTime;
-    @NotBlank
+    @NotNull
     private Integer numberOfRecruits;
     //@NotBlank
     //private PostStatus postStatus;
-    @NotBlank
+    @NotNull
     private String title;
 
     public PostDto toDto() {

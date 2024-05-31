@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="DB-241.17011.41">
-    <data-source name="@zigtong-db.cvwsowqaspno.ap-northeast-2.rds.amazonaws.com" uuid="af5194af-d80c-423c-b220-3a985926ac55">
+    <data-source name="@zigtong-db.cvwsowqaspno.ap-northeast-2.rds.amazonaws.com" uuid="2d136290-0d32-4543-a1fc-83c254dc8467">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping />
+    </data-source>
+    <data-source name="@zigtong-db.cvwsowqaspno.ap-northeast-2.rds.amazonaws.com [2]" uuid="6aa5f0d3-4ea6-4341-9470-3f7708b4fa8f">
       <database-info product="MySQL" version="8.0.35" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.35" exact-driver-version="8.2">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

@@ -4,6 +4,7 @@ import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.post.PostStatus;
 import capstone.zigtong.adminserver.domain.post.RecruitmentStatus;
 import capstone.zigtong.adminserver.domain.post.WageType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +29,9 @@ public class PostDto {
     private WageType wageType;
     private LocalDateTime recruitmentStartTime;
     private LocalDateTime recruitmentEndTime;
+    @Schema(type = "String", pattern = "HH:mm")
     private LocalTime lunchStartTime;
+    @Schema(type = "String", pattern = "HH:mm")
     private LocalTime lunchEndTime;
     private Integer numberOfRecruits;
     private PostStatus postStatus;

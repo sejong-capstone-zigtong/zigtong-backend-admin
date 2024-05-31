@@ -1,5 +1,6 @@
 package capstone.zigtong.adminserver.domain.resume;
 
+import capstone.zigtong.adminserver.domain.relation.ResumeSkillRelation;
 import capstone.zigtong.adminserver.domain.worker.Worker;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

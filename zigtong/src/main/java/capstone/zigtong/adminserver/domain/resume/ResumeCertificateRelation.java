@@ -1,7 +1,16 @@
 package capstone.zigtong.adminserver.domain.resume;
+import java.io.Serializable;
+import capstone.zigtong.adminserver.domain.certificate.Certificate;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,4 +30,14 @@ public class ResumeCertificateRelation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "certificate_id", columnDefinition = "SMALLINT UNSIGNED")
     private Certificate certificate;
+
+
+
+    @Embeddable
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @EqualsAndHashCode
+    public static class ResumeCertificateRelationId implements Serializable {
+        private String workerId;
+        private Integer certificateId;
+    }
 }

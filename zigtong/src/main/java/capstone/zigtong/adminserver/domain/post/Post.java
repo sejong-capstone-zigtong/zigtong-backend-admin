@@ -5,6 +5,7 @@ import capstone.zigtong.adminserver.domain.base.BaseTimeEntity;
 import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,8 +55,10 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime recruitmentEndTime;
     @Column(nullable = false)
+    @JsonFormat(pattern = "HH:mm")  
     private LocalTime lunchStartTime;
     @Column(nullable = false)
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime lunchEndTime;
     @Column(nullable = false)
     private Integer numberOfRecruits;

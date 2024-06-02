@@ -15,20 +15,17 @@ import java.util.stream.Collectors;
 @Data
 public class ResumeDto {
     private final String id;
-    String name;
-    String phoneNumber;
+    private String name;
+    private String phoneNumber;
     private final String uploadedUrl;
     private final String statement;
-    String profileImageUrl;
-    String content;
-    LocalDate birthdate;
-    Gender gender;
+    private String profileImageUrl;
+    private String content;
+    private LocalDate birthdate;
+    private Gender gender;
     private final List<SkillDto> skillDtoList;
     private final List<CareerDto> careerDtoList;
     private final List<CertificateDto> certificateDtoList;
-    List<SkillDto> skills;
-    List<CareerDto> careers;
-    List<CertificateDto> certificates;
 
     public ResumeDto(String id, String phoneNumber, String uploadedUrl, String statement, LocalDate birthdate, Gender gender, List<SkillDto> skillDtoList, List<CareerDto> careerDtoList, List<CertificateDto> certificateDtoList) {
 

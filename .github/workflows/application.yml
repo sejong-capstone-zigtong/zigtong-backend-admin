@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: prod
+    group:
+      prod:
+        - connection-prod
+        - security
+      dev:
+        - connection-dev
+        - security
+      #test:
+       # - connection-test
+       # - security
+logging:
+  level:
+    root: debug

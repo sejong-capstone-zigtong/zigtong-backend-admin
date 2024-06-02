@@ -2,6 +2,7 @@ package capstone.zigtong.adminserver.domain.admin.dto;
 
 import capstone.zigtong.adminserver.domain.admin.Role;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
@@ -10,32 +11,32 @@ import static capstone.zigtong.adminserver.global.validation.Regex.*;
 
 @Data
 public class AdminSignUpDto {
-    @NotBlank
+    @NotNull
     @Pattern(regexp = MEMBER_ACCOUNT_REGEX, message = INVALID_ACCOUNT)
     private String accountId;
-    @NotBlank
+    @NotNull
     @Pattern(regexp = PASSWORD_REGEX, message = INVALID_PASSWORD)
     private String password;
-    @NotBlank
+    @NotNull
     @Pattern(regexp = PASSWORD_REGEX, message = INVALID_PASSWORD)
     private String passwordCheck;
-    @NotBlank
+    @NotNull
     @Pattern(regexp = NICKNAME_REGEX)
     private String name;
-    @NotBlank
+    @NotNull
     private String companyName;
-    @NotBlank
+    @NotNull
     private String businessName;
-    @NotBlank
+    @NotNull
     private String address;
-    @NotBlank()
+    @NotNull
     @Pattern(regexp = PHONE_NUMBER_REGEX, message = INVALID_PHONE_NUMBER )
     private String phoneNumber;
-    @NotBlank
+    @NotNull
     private String businessNumber;
-    @NotBlank
+    @NotNull
     private String category;
-    @NotBlank
+    @NotNull
     private Role role;
 
     public AdminDto toDto() {

@@ -12,5 +12,8 @@ public class SkillDto {
     String name;
 
     public SkillDto(Skill skill) {
+        id = skill.getId();
+        category = skill.getCategory();
+        name = skill.getName();
     }
 }

@@ -1,3 +1,0 @@
-jwt:
-  access-token-key: ${ACCESS_JWT_KEY}
-  access-token-expiration: ${ACCESS_JWT_EXPIRATION}

@@ -4,6 +4,7 @@ import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.admin.repository.AdminRepository;
 import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
+import capstone.zigtong.adminserver.domain.post.dto.PostStatusUpdateDto;
 import capstone.zigtong.adminserver.domain.post.repository.PostRepository;
 import capstone.zigtong.adminserver.global.codes.ErrorCode;
 import capstone.zigtong.adminserver.global.exception.CustomException;
@@ -56,12 +57,7 @@ public class PostService {
         );
         return PostDto.fromEntity(post);
     }
-    private Admin getAdminById(String adminId){
-        Admin admin = adminRepository.findById(adminId).orElseThrow(
-                () -> new CustomException(ACCOUNT_NOT_FOUND)
-        );
-        return admin;
-    }
+
 
     public void deletePost(String adminId, Integer postId) {
         Admin admin = getAdminById(adminId);
@@ -72,5 +68,23 @@ public class PostService {
             throw new IllegalArgumentException("수정 권한이 없습니다.");
         }
         postRepository.delete(post);
+    }
+
+    public PostDto updatePostStatus(String adminId, Integer postId, PostStatusUpdateDto postStatusUpdateDto) {
+        Admin admin = getAdminById(adminId);
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new CustomException(POST_NOT_FOUND)
+        );
+        if(!post.isAdmin(admin)){
+            throw new IllegalArgumentException("수정 권한이 없습니다.");
+        }
+        post.updateStatusByDto(postStatusUpdateDto);
+        return PostDto.fromEntity(post);
+    }
+    private Admin getAdminById(String adminId){
+        Admin admin = adminRepository.findById(adminId).orElseThrow(
+                () -> new CustomException(ACCOUNT_NOT_FOUND)
+        );
+        return admin;
     }
 }

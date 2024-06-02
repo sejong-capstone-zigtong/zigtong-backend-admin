@@ -2,6 +2,7 @@ package capstone.zigtong.adminserver.domain.post.controller;
 
 import capstone.zigtong.adminserver.domain.post.dto.PostCreateDto;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
+import capstone.zigtong.adminserver.domain.post.dto.PostStatusUpdateDto;
 import capstone.zigtong.adminserver.domain.post.dto.PostUpdateDto;
 import capstone.zigtong.adminserver.domain.post.service.PostService;
 import capstone.zigtong.adminserver.global.exception.CommonResponse;
@@ -66,6 +67,19 @@ public class PostController {
         postService.deletePost(adminId, Integer.valueOf(postId));
         return ResponseEntity.ok()
                 .body("successfully deleted");
+    }
+
+    @Operation(summary = "게시글 상태 수정", description = "구인 게시글의 상태를 수정합니다")
+    @PutMapping("/posts/{postId}/postStatus")
+    public ResponseEntity<CommonResponse> updatePostStatus(
+            @PathVariable String postId,
+            @RequestBody @Valid PostStatusUpdateDto postStatusUpdateDto
+    ){
+        String adminId = SecurityContextUtil.extractAdminId();
+        PostDto postDto =
+                postService.updatePostStatus(adminId, Integer.valueOf(postId), postStatusUpdateDto);
+        return ResponseEntity.ok()
+                .body(new CommonResponse(postDto.getId().toString(), "successfully updated"));
     }
 
 }

@@ -4,6 +4,7 @@ import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.base.BaseTimeEntity;
 import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
+import capstone.zigtong.adminserver.domain.post.dto.PostStatusUpdateDto;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -128,5 +129,9 @@ public class Post extends BaseTimeEntity {
 
     public boolean isAdmin(Admin admin) {
         return this.admin.equals(admin);
+    }
+
+    public void updateStatusByDto(PostStatusUpdateDto postStatusUpdateDto) {
+        this.recruitmentStatus = postStatusUpdateDto.getRecruitmentStatus();
     }
 }

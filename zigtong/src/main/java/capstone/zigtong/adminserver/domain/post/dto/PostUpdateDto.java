@@ -3,6 +3,8 @@ package capstone.zigtong.adminserver.domain.post.dto;
 import capstone.zigtong.adminserver.domain.post.PostStatus;
 import capstone.zigtong.adminserver.domain.post.RecruitmentStatus;
 import capstone.zigtong.adminserver.domain.post.WageType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigInteger;
@@ -11,6 +13,7 @@ import java.time.LocalTime;
 @Data
 public class PostUpdateDto {
 
+    @NotEmpty
     private String content;
     private BigInteger wage;
     private String address;
@@ -19,7 +22,7 @@ public class PostUpdateDto {
     private String category;
     private Integer numberOfApplicants;
     private String phoneNumber;
-    private RecruitmentStatus recruitmentStatus;
+
     private WageType wageType;
     private LocalDateTime recruitmentStartTime;
     private LocalDateTime recruitmentEndTime;
@@ -27,6 +30,7 @@ public class PostUpdateDto {
     private LocalTime lunchEndTime;
     private Integer numberOfRecruits;
     private PostStatus postStatus;
+    @NotEmpty
     private String title;
     public PostDto toDto() {
         return new PostDto(
@@ -38,7 +42,6 @@ public class PostUpdateDto {
                 category,
                 numberOfApplicants,
                 phoneNumber,
-                recruitmentStatus,
                 wageType,
                 recruitmentStartTime,
                 recruitmentEndTime,

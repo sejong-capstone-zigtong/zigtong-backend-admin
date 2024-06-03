@@ -6,15 +6,14 @@ import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
 import capstone.zigtong.adminserver.domain.post.dto.PostStatusUpdateDto;
 import capstone.zigtong.adminserver.domain.post.repository.PostRepository;
-import capstone.zigtong.adminserver.global.codes.ErrorCode;
 import capstone.zigtong.adminserver.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
 
 import static capstone.zigtong.adminserver.global.codes.ErrorCode.ACCOUNT_NOT_FOUND;
 import static capstone.zigtong.adminserver.global.codes.ErrorCode.POST_NOT_FOUND;
@@ -25,7 +24,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final AdminRepository adminRepository;
     @Transactional
-    public PostDto createPost(String adminId,PostDto postDto){
+    public PostDto createPost(String adminId, PostDto postDto, List<MultipartFile> images){
         Admin admin = getAdminById(adminId);
         Post post = new Post(admin, postDto);
         postRepository.save(post);

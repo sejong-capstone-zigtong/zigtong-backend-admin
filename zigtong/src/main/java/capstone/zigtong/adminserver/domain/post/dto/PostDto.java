@@ -12,6 +12,8 @@ import lombok.Data;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 public class PostDto {
@@ -36,6 +38,7 @@ public class PostDto {
     private Integer numberOfRecruits;
     private PostStatus postStatus;
     private String title;
+    //private List<String> imageUrls;
 
     public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime,
                    LocalDateTime endTime, String category,String phoneNumber,

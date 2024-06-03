@@ -17,7 +17,7 @@ import java.util.List;
 public class SkillController {
     private final SkillService skillService;
     @Operation(summary = "스킬 카테고리 조회", description = "스킬 카테고리를 조회합니다.")
-    @GetMapping("/skill/category")
+    @GetMapping("/skills/categories")
     public List<SkillCategoryDto> getSkillCategories() {
         return skillService.getSkillCategories();
     }

@@ -25,7 +25,7 @@ public class WorkerApplicationStatus {
     @ManyToOne(fetch = FetchType.LAZY)
     private Worker worker;
     public WorkerApplicationStatus(Post post, Worker worker) {
-        this.applicationStatus = ApplicationStatus.DEFAULT;
+        this.applicationStatus = ApplicationStatus.PENDING;
         this.post = post;
         post.addWorkerApplicationStatus(this);
         this.worker = worker;

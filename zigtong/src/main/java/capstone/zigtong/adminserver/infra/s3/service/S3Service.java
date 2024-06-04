@@ -18,12 +18,11 @@ import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 public class S3Service {
     private final S3Client s3Client;
 
-    //@Value("${spring.cloud.aws.s3.bucket}")
-    private String BUCKET_NAME = "zigtong-post-images";
+    @Value("${spring.cloud.aws.s3.bucket}")
+    private String BUCKET_NAME;
 
     @SneakyThrows
     public String uploadImage(String adminId, MultipartFile profileImage) {
-        // 이미지 파일인지 검증
         if (!profileImage.getContentType().startsWith("image/")) {
             throw new IllegalArgumentException("이미지 파일만 업로드 가능합니다.");
         }

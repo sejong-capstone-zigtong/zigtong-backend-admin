@@ -5,11 +5,11 @@ spring:
       prod:
         - connection-prod
         - security
-        - -infra
+        - infra
       dev:
         - connection-dev
         - security
-        - -infra
+        - infra
       #test:
        # - connection-test
        # - security

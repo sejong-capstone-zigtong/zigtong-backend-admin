@@ -7,4 +7,4 @@ spring:
       region:
         static: ap-northeast-2
       s3:
-        bucket: ${S3_BUCKET_NAME:zigtong-post-images}
+        bucket: ${S3_BUCKET_NAME}

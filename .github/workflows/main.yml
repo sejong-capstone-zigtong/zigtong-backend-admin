@@ -1,0 +1,15 @@
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set Yaml
+      with:
+        files: ./src/main/resources/application-.yml 
+      env:
+        spring.cloud.aws.credentials.access-key: ${{ S3_ACCESS_KEY }} 
+        spring.cloud.aws.credentials.secret-key: ${{ S3_SECRET_KEY }} 
+        S3_BUCKET_NAME: ${{ S3_BUCKET_NAME }}

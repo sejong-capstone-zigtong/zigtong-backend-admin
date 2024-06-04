@@ -17,7 +17,7 @@ public class WorkerApplicationStatus {
     private Integer id;
     @Column(nullable = false, name = "application_status")
     @Enumerated(EnumType.STRING)
-    private ApplicationStatus applicationStatus;
+    private ApplicationStatus applicationStatus = ApplicationStatus.PENDING;
     @JoinColumn(name="post_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;

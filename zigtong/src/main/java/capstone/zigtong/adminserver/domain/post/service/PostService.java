@@ -30,7 +30,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final AdminRepository adminRepository;
     private final WorkspacePostRepository workspacePostRepository;
-    @Transactional
+    /*@Transactional
     public PostDto createPost(String adminId, PostDto postDto, List<MultipartFile> images){
         Admin admin = getAdminById(adminId);
         Post post = new Post(admin, postDto);
@@ -46,8 +46,15 @@ public class PostService {
         }
         postRepository.save(post);
         return PostDto.fromEntity(post);
-    }
-@Transactional
+    }*/
+    @Transactional
+    public PostDto createPost(String adminId,PostDto postDto){
+            Admin admin = getAdminById(adminId);
+            Post post = new Post(admin, postDto);
+            postRepository.save(post);
+            return PostDto.fromEntity(post);
+        }
+    @Transactional
     public PostDto updatePost(String adminId, Integer postId, PostDto postDto) {
     Admin admin = getAdminById(adminId);
     Post post = postRepository.findById(postId).orElseThrow(

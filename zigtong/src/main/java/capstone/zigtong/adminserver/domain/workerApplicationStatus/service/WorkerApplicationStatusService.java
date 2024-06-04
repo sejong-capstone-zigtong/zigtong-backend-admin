@@ -55,7 +55,7 @@ public class WorkerApplicationStatusService {
             throw new IllegalArgumentException("수정 권한이 없습니다.");
         }
         workerApplicationStatus.updateByDto(requestDto);
-        if(requestDto.getApplicationStatus().equals(ApplicationStatus.ACCEPT)){
+        if(requestDto.getApplicationStatus().equals(ApplicationStatus.ACCEPTED)){
             Employee employee = new Employee(post, workerApplicationStatus.getWorker());
             employeeRepository.save(employee);
         }

@@ -8,11 +8,12 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public enum PublicUris {
-    SIGN_IN("/admins/sign-in"),
-    SIGN_UP("/admins/sign-up"),
-    SEND_CODE("/auth/send-code"),
-    VERIFY("/auth/verify"),
-    BUSINESS_TYPE("/admins/business-type");
+    SIGN_IN(EndpointConstant.ENDPOINT_PREFIX +"/admins/sign-in"),
+    SIGN_UP(EndpointConstant.ENDPOINT_PREFIX +"/admins/sign-up"),
+    SEND_CODE(EndpointConstant.ENDPOINT_PREFIX +"/auth/send-code"),
+    VERIFY(EndpointConstant.ENDPOINT_PREFIX +"/auth/verify"),
+    BUSINESS_TYPE(EndpointConstant.ENDPOINT_PREFIX +"/admins/business-type"),
+    HEALTHY_CHECK("/health-check");
 
     private final String value;
 
@@ -23,6 +24,6 @@ public enum PublicUris {
     }
 
     private String getUriWithEndpointPrefix() {
-        return EndpointConstant.ENDPOINT_PREFIX + value;
+        return value;
     }
 }

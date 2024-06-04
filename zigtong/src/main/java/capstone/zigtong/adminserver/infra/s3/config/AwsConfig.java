@@ -1,3 +1,4 @@
+/*
 package capstone.zigtong.adminserver.infra.s3.config;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -30,4 +31,4 @@ public class AwsConfig {
                 .serviceConfiguration(S3Configuration.builder().build())
                 .build();
     }
-}
+}*/

@@ -27,7 +27,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 public class PostController {
     private final PostService postService;
     @Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
-    @PostMapping("/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<CommonResponse> createPost(@RequestPart("post") PostCreateDto postCreateDto,
                                                      @RequestPart("images") List<MultipartFile> images){
         String adminId = SecurityContextUtil.extractAdminId();

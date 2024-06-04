@@ -5,9 +5,10 @@ import capstone.zigtong.adminserver.domain.worker.dto.WorkerDto;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.ApplicationStatus;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+@Data
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

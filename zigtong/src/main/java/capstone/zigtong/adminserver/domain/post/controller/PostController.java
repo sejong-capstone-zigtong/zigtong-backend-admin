@@ -9,10 +9,12 @@ import capstone.zigtong.adminserver.global.security.util.SecurityContextUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -24,10 +26,11 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 public class PostController {
     private final PostService postService;
     @Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
-    @PostMapping("/posts")
-    public ResponseEntity<CommonResponse> createPost(@RequestBody PostCreateDto postCreateDto){
+    @PostMapping(value = "/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<CommonResponse> createPost(@RequestPart("post") PostCreateDto postCreateDto,
+                                                     @RequestPart("images") List<MultipartFile> images){
         String adminId = SecurityContextUtil.extractAdminId();
-        PostDto postDto = postService.createPost(adminId,postCreateDto.toDto());
+        PostDto postDto = postService.createPost(adminId,postCreateDto.toDto(), images);
 
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId().toString(), "successfully created"));

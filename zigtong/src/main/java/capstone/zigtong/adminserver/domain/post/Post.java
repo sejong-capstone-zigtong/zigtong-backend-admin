@@ -4,7 +4,9 @@ import capstone.zigtong.adminserver.domain.admin.Admin;
 import capstone.zigtong.adminserver.domain.base.BaseTimeEntity;
 import capstone.zigtong.adminserver.domain.employee.Employee;
 import capstone.zigtong.adminserver.domain.post.dto.PostDto;
+import capstone.zigtong.adminserver.domain.post.dto.PostStatusUpdateDto;
 import capstone.zigtong.adminserver.domain.workerApplicationStatus.WorkerApplicationStatus;
+import capstone.zigtong.adminserver.domain.workspacePost.WorkspacePost;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -73,7 +75,8 @@ public class Post extends BaseTimeEntity {
     private List<Employee> employeeList = new ArrayList<>();
     @OneToMany(mappedBy = "post")
     private List<WorkerApplicationStatus> workerApplicationStatusList = new ArrayList<>();
-
+    @OneToMany(mappedBy = "post")
+    private List<WorkspacePost> workspacePostList =new ArrayList<>();
 
 
     public Post(Admin admin, PostDto postDto) {
@@ -128,5 +131,12 @@ public class Post extends BaseTimeEntity {
 
     public boolean isAdmin(Admin admin) {
         return this.admin.equals(admin);
+    }
+    public void updateStatusByDto(PostStatusUpdateDto postStatusUpdateDto) {
+        this.recruitmentStatus = postStatusUpdateDto.getRecruitmentStatus();
+    }
+    public void addWorkspacePost(WorkspacePost workspacePost) {
+        this.workspacePostList.add(workspacePost);
+        workspacePost.addPost(this);
     }
 }

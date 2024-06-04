@@ -19,7 +19,6 @@ public class PostUpdateDto {
     private String category;
     private Integer numberOfApplicants;
     private String phoneNumber;
-    private RecruitmentStatus recruitmentStatus;
     private WageType wageType;
     private LocalDateTime recruitmentStartTime;
     private LocalDateTime recruitmentEndTime;
@@ -38,7 +37,6 @@ public class PostUpdateDto {
                 category,
                 numberOfApplicants,
                 phoneNumber,
-                recruitmentStatus,
                 wageType,
                 recruitmentStartTime,
                 recruitmentEndTime,

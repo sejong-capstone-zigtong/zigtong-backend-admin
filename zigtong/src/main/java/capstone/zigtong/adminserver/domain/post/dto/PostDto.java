@@ -61,7 +61,7 @@ public class PostDto {
         //this.postStatus = postStatus;
     }
 
-    public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime, LocalDateTime endTime, String category, Integer numberOfApplicants, String phoneNumber, RecruitmentStatus recruitmentStatus,WageType wageType, LocalDateTime recruitmentStartTime, LocalDateTime recruitmentEndTime, LocalTime lunchStartTime, LocalTime lunchEndTime, Integer numberOfRecruits, PostStatus postStatus,String title) {
+    public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime, LocalDateTime endTime, String category, Integer numberOfApplicants, String phoneNumber ,WageType wageType, LocalDateTime recruitmentStartTime, LocalDateTime recruitmentEndTime, LocalTime lunchStartTime, LocalTime lunchEndTime, Integer numberOfRecruits, PostStatus postStatus,String title) {
 
         this.content = content;
         this.wage = wage;
@@ -71,7 +71,6 @@ public class PostDto {
         this.category = category;
         this.numberOfApplicants = numberOfApplicants;
         this.phoneNumber = phoneNumber;
-        this.recruitmentStatus = recruitmentStatus;
         this.wageType = wageType;
         this.recruitmentStartTime = recruitmentStartTime;
         this.recruitmentEndTime = recruitmentEndTime;

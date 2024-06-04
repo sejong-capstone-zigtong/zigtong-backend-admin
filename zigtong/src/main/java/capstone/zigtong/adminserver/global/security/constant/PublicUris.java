@@ -13,7 +13,8 @@ public enum PublicUris {
     SEND_CODE(EndpointConstant.ENDPOINT_PREFIX +"/auth/send-code"),
     VERIFY(EndpointConstant.ENDPOINT_PREFIX +"/auth/verify"),
     BUSINESS_TYPE(EndpointConstant.ENDPOINT_PREFIX +"/admins/business-type"),
-    HEALTHY_CHECK("/health-check");
+    HEALTHY_CHECK("/health-check"),
+    BASE("/");
 
     private final String value;
 

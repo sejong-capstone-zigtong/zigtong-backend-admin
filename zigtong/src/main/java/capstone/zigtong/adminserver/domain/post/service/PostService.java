@@ -36,10 +36,11 @@ public class PostService {
         Post post = new Post(admin, postDto);
         postRepository.save(post);
         List<String> imageUrls = new ArrayList<>();
-        for (MultipartFile image : images) {
+        /*for (MultipartFile image : images) {
             String imageUrl = s3Service.uploadImage(adminId, image);
             imageUrls.add(imageUrl);
-        }
+        }*/
+        imageUrls = s3Service.uploadImages(adminId, images);
         for (String imageUrl : imageUrls) {
             WorkspacePost workspacePost = new WorkspacePost(imageUrl);
             post.addWorkspacePost(workspacePost);

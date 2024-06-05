@@ -11,6 +11,10 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -26,8 +30,9 @@ public class S3Service {
             throw new IllegalArgumentException("이미지 파일만 업로드 가능합니다.");
         }
 
+        String uniqueKey = UUID.randomUUID().toString();
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                .key(adminId)
+                .key(uniqueKey)
                 .bucket(BUCKET_NAME)
                 .contentType(profileImage.getContentType())
                 .contentLength(profileImage.getSize())
@@ -43,5 +48,38 @@ public class S3Service {
 
         // 업로드 경로 반환
         return s3Client.utilities().getUrl(builder -> builder.bucket(BUCKET_NAME).key(adminId)).toExternalForm();
+    }
+
+    @SneakyThrows
+    public List<String> uploadImages(String adminId, List<MultipartFile> profileImageList) {
+        List<String> imageUrls = new ArrayList<>();
+
+        for (MultipartFile profileImage : profileImageList) {
+            if (!profileImage.getContentType().startsWith("image/")) {
+                throw new IllegalArgumentException("이미지 파일만 업로드 가능합니다.");
+            }
+
+            String uniqueKey = UUID.randomUUID().toString();
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .key(uniqueKey)
+                    .bucket(BUCKET_NAME)
+                    .contentType(profileImage.getContentType())
+                    .contentLength(profileImage.getSize())
+                    .build();
+
+            RequestBody requestBody = RequestBody.fromInputStream(profileImage.getInputStream(), profileImage.getSize());
+
+            PutObjectResponse response = s3Client.putObject(putObjectRequest, requestBody);
+
+            if (!response.sdkHttpResponse().isSuccessful()) {
+                log.error("S3 업로드 실패: {}", response.sdkHttpResponse().statusText());
+                throw new RuntimeException("S3 업로드 실패: " + response.sdkHttpResponse().statusText());
+            }
+
+            String imageUrl = s3Client.utilities().getUrl(builder -> builder.bucket(BUCKET_NAME).key(uniqueKey)).toExternalForm();
+            imageUrls.add(imageUrl);
+        }
+
+        return imageUrls;
     }
 }

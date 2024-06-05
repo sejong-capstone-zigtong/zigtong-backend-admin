@@ -51,7 +51,7 @@ public class S3Service {
     }
 
     @SneakyThrows
-    public List<String> uploadImages(String adminId, List<MultipartFile> profileImageList) {
+    public List<String> uploadImageList(String adminId, List<MultipartFile> profileImageList) {
         List<String> imageUrls = new ArrayList<>();
 
         for (MultipartFile profileImage : profileImageList) {

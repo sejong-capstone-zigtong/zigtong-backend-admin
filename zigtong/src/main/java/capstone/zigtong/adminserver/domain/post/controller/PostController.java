@@ -28,7 +28,7 @@ public class PostController {
     @Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
     @PostMapping(value = "/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<CommonResponse> createPost(@RequestPart("post") PostCreateDto postCreateDto,
-                                                     @RequestPart("images") List<MultipartFile> images){
+                                                     @RequestPart(value = "images", required=false) List<MultipartFile> images){
         String adminId = SecurityContextUtil.extractAdminId();
         PostDto postDto = postService.createPost(adminId,postCreateDto.toDto(), images);
 

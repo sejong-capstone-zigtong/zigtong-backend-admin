@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(EndpointConstant.ENDPOINT_PREFIX + "/admins")
-@CrossOrigin(origins = "*")
 public class SkillController {
     private final SkillService skillService;
     @Operation(summary = "스킬 카테고리 조회", description = "스킬 카테고리를 조회합니다.")

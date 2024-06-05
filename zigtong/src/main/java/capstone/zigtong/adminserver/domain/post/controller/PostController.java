@@ -23,7 +23,6 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
-@CrossOrigin(origins = "*")
 public class PostController {
     private final PostService postService;
     /*@Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")

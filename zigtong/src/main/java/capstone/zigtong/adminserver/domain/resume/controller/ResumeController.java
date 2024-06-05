@@ -13,7 +13,6 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
-@CrossOrigin(origins = "*")
 public class ResumeController {
     private final ResumeService resumeService;
     @Operation(summary = "workId에 해당하는 멤버의 이력서 조회", description = "관리자가 지원현황페이지에서 특정 workId에 해당하는 멤버의 이력서 조회합니다.")

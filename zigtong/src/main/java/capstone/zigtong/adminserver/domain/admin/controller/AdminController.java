@@ -19,7 +19,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class AdminController {
     private final AdminService adminService;
     @Operation(summary = "회원가입", description = "사업자(관리자)의 회원가입입니다")

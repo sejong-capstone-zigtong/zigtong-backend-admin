@@ -15,7 +15,6 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
-@CrossOrigin(origins = "*")
 public class BusinessTypeController {
     private final BusinessTypeService businessTypeService;
     @Operation(summary = "업종 조회", description = "회원가입 시 선택할 업종을 조회합니다")

@@ -28,7 +28,7 @@ public class AdminController {
         adminService.signUp(adminSignUpDto.toDto());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
+    @CrossOrigin(origins = "*")
     @Operation(summary = "로그인", description = "사업자(관리자)의 로그인입니다")
     @PostMapping("/sign-in")
     public ResponseEntity<SignInResponse>adminSignIn(@RequestBody AdminSignInDto adminSignInDto){

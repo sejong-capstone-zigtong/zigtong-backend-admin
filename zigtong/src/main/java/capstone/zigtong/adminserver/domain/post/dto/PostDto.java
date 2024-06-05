@@ -4,6 +4,8 @@ import capstone.zigtong.adminserver.domain.post.Post;
 import capstone.zigtong.adminserver.domain.post.PostStatus;
 import capstone.zigtong.adminserver.domain.post.RecruitmentStatus;
 import capstone.zigtong.adminserver.domain.post.WageType;
+import capstone.zigtong.adminserver.domain.workspacePost.WorkspacePost;
+import capstone.zigtong.adminserver.domain.workspacePost.WorkspacePostDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,9 @@ import lombok.Data;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 public class PostDto {
@@ -36,6 +41,7 @@ public class PostDto {
     private Integer numberOfRecruits;
     private PostStatus postStatus;
     private String title;
+    private List<WorkspacePostDto> workspacePostDtoList;
 
     public PostDto(String content, BigInteger wage, String address, LocalDateTime startTime,
                    LocalDateTime endTime, String category,String phoneNumber,
@@ -82,6 +88,9 @@ public class PostDto {
     }
 
     public static PostDto fromEntity(Post post) {
+        List<WorkspacePostDto> workspacePostDtoList = post.getWorkspacePostList().stream()
+                .map(WorkspacePostDto::fromEntity)
+                .toList();
         return new PostDto(
                 post.getId(),
                 post.getContent(),
@@ -100,7 +109,8 @@ public class PostDto {
                 post.getLunchEndTime(),
                 post.getNumberOfRecruits(),
                 post.getPostStatus(),
-                post.getTitle()
+                post.getTitle(),
+                workspacePostDtoList
         );
     }
 }

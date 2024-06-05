@@ -136,7 +136,7 @@ public class Post extends BaseTimeEntity {
         this.recruitmentStatus = postStatusUpdateDto.getRecruitmentStatus();
     }
     public void addWorkspacePost(WorkspacePost workspacePost) {
-        this.workspacePostList.add(workspacePost);
         workspacePost.addPost(this);
+        this.workspacePostList.add(workspacePost);
     }
 }

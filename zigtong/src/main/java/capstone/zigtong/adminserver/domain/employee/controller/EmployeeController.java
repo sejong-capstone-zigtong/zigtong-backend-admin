@@ -14,6 +14,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX)
+@CrossOrigin(origins = "*")
 public class EmployeeController {
     private final EmployeeService employeeService;
     @Operation(summary = "근로자 조회", description = "해당 게시글의 근로자들을 조회합니다")

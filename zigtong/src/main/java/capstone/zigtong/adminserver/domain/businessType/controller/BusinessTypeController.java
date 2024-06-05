@@ -6,10 +6,7 @@ import capstone.zigtong.adminserver.domain.businessType.service.BusinessTypeServ
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +15,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
+@CrossOrigin(origins = "*")
 public class BusinessTypeController {
     private final BusinessTypeService businessTypeService;
     @Operation(summary = "업종 조회", description = "회원가입 시 선택할 업종을 조회합니다")

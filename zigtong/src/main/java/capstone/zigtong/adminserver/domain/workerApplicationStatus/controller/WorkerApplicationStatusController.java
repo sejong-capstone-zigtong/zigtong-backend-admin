@@ -17,6 +17,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX + "/admins/posts/{postId}")
+@CrossOrigin(origins = "*")
 public class WorkerApplicationStatusController {
     private final WorkerApplicationStatusService workerApplicationStatusService;
     @Operation(summary = "구직자 지원현황 생성", description = "구직자 지원현황 대한 데이터를 생성합니다(생성시 status: DEFAULT 값 넣었음")

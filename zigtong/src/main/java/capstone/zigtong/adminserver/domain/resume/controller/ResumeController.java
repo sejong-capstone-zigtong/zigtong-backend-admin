@@ -6,16 +6,14 @@ import capstone.zigtong.adminserver.domain.resume.service.ResumeService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static capstone.zigtong.adminserver.global.security.constant.EndpointConstant.ENDPOINT_PREFIX;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
+@CrossOrigin(origins = "*")
 public class ResumeController {
     private final ResumeService resumeService;
     @Operation(summary = "workId에 해당하는 멤버의 이력서 조회", description = "관리자가 지원현황페이지에서 특정 workId에 해당하는 멤버의 이력서 조회합니다.")

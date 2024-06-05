@@ -30,10 +30,11 @@ public class PostService {
     private final PostRepository postRepository;
     private final AdminRepository adminRepository;
     private final WorkspacePostRepository workspacePostRepository;
-    /*@Transactional
+    @Transactional
     public PostDto createPost(String adminId, PostDto postDto, List<MultipartFile> images){
         Admin admin = getAdminById(adminId);
         Post post = new Post(admin, postDto);
+        postRepository.save(post);
         List<String> imageUrls = new ArrayList<>();
         for (MultipartFile image : images) {
             String imageUrl = s3Service.uploadImage(adminId, image);
@@ -41,19 +42,19 @@ public class PostService {
         }
         for (String imageUrl : imageUrls) {
             WorkspacePost workspacePost = new WorkspacePost(imageUrl);
-            workspacePostRepository.save(workspacePost);
             post.addWorkspacePost(workspacePost);
+            workspacePostRepository.save(workspacePost);
         }
-        postRepository.save(post);
         return PostDto.fromEntity(post);
-    }*/
+    }
+    /*
     @Transactional
     public PostDto createPost(String adminId,PostDto postDto){
             Admin admin = getAdminById(adminId);
             Post post = new Post(admin, postDto);
             postRepository.save(post);
             return PostDto.fromEntity(post);
-        }
+        }*/
     @Transactional
     public PostDto updatePost(String adminId, Integer postId, PostDto postDto) {
     Admin admin = getAdminById(adminId);

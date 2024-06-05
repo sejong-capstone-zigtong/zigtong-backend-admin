@@ -25,7 +25,7 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
 public class PostController {
     private final PostService postService;
-    /*@Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
+    @Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
     @PostMapping(value = "/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<CommonResponse> createPost(@RequestPart("post") PostCreateDto postCreateDto,
                                                      @RequestPart("images") List<MultipartFile> images){
@@ -34,8 +34,8 @@ public class PostController {
 
         return ResponseEntity.ok()
                 .body(new CommonResponse(postDto.getId().toString(), "successfully created"));
-    }*/
-    @Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
+    }
+    /*@Operation(summary = "게시글 생성", description = "구인 게시글을 생성합니다")
     @PostMapping("/posts")
     public ResponseEntity<CommonResponse> createPost(@RequestBody PostCreateDto postCreateDto){
             String adminId = SecurityContextUtil.extractAdminId();
@@ -43,7 +43,7 @@ public class PostController {
 
             return ResponseEntity.ok()
                     .body(new CommonResponse(postDto.getId().toString(), "successfully created"));
-        }
+        }*/
     @Operation(summary = "게시글 수정", description = "구인 게시글을 수정합니다")
     @PutMapping("/posts/{postId}")
     public ResponseEntity<CommonResponse> updatePost(

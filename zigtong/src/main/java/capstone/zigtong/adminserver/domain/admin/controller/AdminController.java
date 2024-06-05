@@ -19,7 +19,6 @@ import static capstone.zigtong.adminserver.global.security.constant.EndpointCons
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ENDPOINT_PREFIX+"/admins")
-//@CrossOrigin(origins = "*")
 public class AdminController {
     private final AdminService adminService;
     @Operation(summary = "회원가입", description = "사업자(관리자)의 회원가입입니다")
@@ -28,7 +27,6 @@ public class AdminController {
         adminService.signUp(adminSignUpDto.toDto());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    @CrossOrigin(origins = "*")
     @Operation(summary = "로그인", description = "사업자(관리자)의 로그인입니다")
     @PostMapping("/sign-in")
     public ResponseEntity<SignInResponse>adminSignIn(@RequestBody AdminSignInDto adminSignInDto){
